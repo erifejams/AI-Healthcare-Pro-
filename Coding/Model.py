@@ -1,8 +1,7 @@
 import csv
 import json
-import numpy as np
 #HAD TO INSTALL THE LIBRARY USING "pip install nltk"
-#import nlkt
+#from nltk
 
 #starting here
 #basic chatbot build
