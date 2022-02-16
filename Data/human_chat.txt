@@ -1,4 +1,3 @@
-Human 1: Hi!
 Human 2: What is your favorite holiday?
 Human 1: one where I get to meet lots of different people.
 Human 2: What was the most number of people you have ever met during a holiday?
