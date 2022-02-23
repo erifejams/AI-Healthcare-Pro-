@@ -21,11 +21,11 @@ data = pd.read_csv('Data/Original/Psych_data.csv', encoding="ISO-8859-1")
 data = data[['Answer', 'Question']]
 
 
-#turn txt file to a csv file
-#then put it under a column
+#human_chat.txt
 #then find the word e.g human 1 and put it under a 2 separate columns e.g Question and answer
 firstConv = []
 secondConv = []
+data2 = pd.DataFrame(columns = ['Question','Answer'])
 with open('Data/Original/human_chat.txt', encoding="utf8") as file:
     NormalConv = file.readlines()
     
@@ -34,15 +34,17 @@ with open('Data/Original/human_chat.txt', encoding="utf8") as file:
         #QUESTION KINDA SENTENCES
         if "Human 2" in i:
             firstConv.append(i) 
-            #print(data)
-        #ANSWERS KINDA SENTENCES
+        #ANSWER KINDA SENTENCES
         if "Human 1" in i:
             secondConv.append(i)
+            
 
-Conv = {'Question': firstConv, 'Answer': secondConv}
-print(len(firstConv), len(secondConv))
-#df = pd.DataFrame(Conv, columns=['Question','Answer'])
-#print(df)
+data2 = pd.DataFrame(firstConv , columns = ['Question'])
+#BECAUSE THE LENGTH OF VALUES DIDN'T MATCH(ONE WAS MORE THAN THE OTHER), SO USING SERIES NULL WAS FILLED IN
+data2['Answer'] = pd.Series(secondConv)
+data2.replace("Human 2:",'',inplace=True, regex=True)
+data2.replace("Human 1:",'',inplace=True, regex=True)
+data2.replace("\n",'',inplace=True, regex=True)
 
 
 #qna_chitchat_professional.tsv
@@ -69,7 +71,7 @@ data5['Answer'].replace("</p>",'',inplace=True, regex=True)
 
 
 #PUT ALL THE DATA TOGETHER
-concate_data = pd.concat([data3, data, data4])
+concate_data = pd.concat([data, data2, data3, data4])
 #drops if it has any missing values
 concate_data.dropna(axis=1)
 concate_data.to_csv('Data/trainingData.csv')
