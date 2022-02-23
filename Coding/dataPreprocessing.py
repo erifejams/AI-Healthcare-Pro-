@@ -11,14 +11,14 @@
 import pandas as pd
 import string
 
+
 #########################################################  MY CODE   ###########################################################
-#reading the data
-#https://www.analyticsvidhya.com/blog/2021/06/text-preprocessing-in-nlp-with-python-codes/
-data = pd.read_csv('Data/Psych_data.csv', encoding="ISO-8859-1")
+#READING THE DATA
+
+#Psych_data.csv
+data = pd.read_csv('Data/Original/Psych_data.csv', encoding="ISO-8859-1")
 #putting only the column that I needed from Psych_data.csv
 data = data[['Answer', 'Question']]
-#this is to read the data to a csv file
-data.to_csv('Data/trainingData.csv')
 
 
 #turn txt file to a csv file
@@ -26,7 +26,7 @@ data.to_csv('Data/trainingData.csv')
 #then find the word e.g human 1 and put it under a 2 separate columns e.g Question and answer
 firstConv = []
 secondConv = []
-with open('Data/human_chat.txt', encoding="utf8") as file:
+with open('Data/Original/human_chat.txt', encoding="utf8") as file:
     NormalConv = file.readlines()
     
     #TO SEPARTE IT BY HUMAN 1 AND HUMAN 2
@@ -39,25 +39,46 @@ with open('Data/human_chat.txt', encoding="utf8") as file:
         if "Human 1" in i:
             secondConv.append(i)
 
-#df = pd.DataFrame(firstConv, columns = ['Question', 'Answer'])
-
-#PUT IT INTO THE TRAINING FILE
-# print(firstConv)
+Conv = {'Question': firstConv, 'Answer': secondConv}
+print(len(firstConv), len(secondConv))
+#df = pd.DataFrame(Conv, columns=['Question','Answer'])
+#print(df)
 
 
 #qna_chitchat_professional.tsv
-data3 = pd.read_csv("Data/qna_chitchat_professional.tsv", sep='\t')
+data3 = pd.read_csv("Data/Original/qna_chitchat_professional.tsv", sep='\t')
 data3 = data3[['Answer', 'Question']]
-data3.to_csv('Data/trainingData.csv')
 
-print(data3)
-#https://www.geeksforgeeks.org/different-ways-to-create-pandas-dataframe/
-#df = pd.DataFrame(data, columns = ['Question', 'Answer'])
 
+#20200325_counsel_chat.csv
+data4 = pd.read_csv('Data/Original/20200325_counsel_chat.csv', encoding="ISO-8859-1")
+data4 = data4[['answerText', 'questionText']]
+data4.rename(columns = {'answerText':'Answer'}, inplace = True)
+data4.rename(columns = {'questionText':'Question'}, inplace = True)
+
+
+#counselchat-data.csv
+data5 = pd.read_csv('Data/Original/counselchat-data.csv', encoding="ISO-8859-1")
+data5 = data5[['answerText', 'questionText']]
+data5.rename(columns = {'answerText':'Answer'}, inplace = True)
+data5.rename(columns = {'questionText':'Question'}, inplace = True)
+#cleaning up the data : removing <p> & </p> 
+#NEED TO CONTINUE ON FROM HERE CLEANING THIS FILE
+data5['Answer'].replace("<p>",'',inplace=True, regex=True)
+data5['Answer'].replace("</p>",'',inplace=True, regex=True)
+
+
+#PUT ALL THE DATA TOGETHER
+concate_data = pd.concat([data3, data, data4])
+#drops if it has any missing values
+concate_data.dropna(axis=1)
+concate_data.to_csv('Data/trainingData.csv')
+print(concate_data.count())
 
 
 ############################################# GOT THIS CODE FROM SOMEWHERE  ######################################################
 ###############   NEED TO EDIT IT TO PREPROCESS THE DATA FROM MY CSV TRAINING FILE
+#https://www.analyticsvidhya.com/blog/2021/06/text-preprocessing-in-nlp-with-python-codes/
 """
 #defining the function to remove punctuation
 string.punctuation
