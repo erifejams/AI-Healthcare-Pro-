@@ -1,103 +1,54 @@
-#I WANT TO PUT ALL THE DATA INTO ONE CSV FILE AS ID, QUESTION, ANSWER/ Response
 #DO DATA PREPROCESSING STEPS WHICH ARE: 
     #Removing punctuations like . , ! $( ) * % @
     #Removing URLs
-    #Removing Stop words
+    #Removing Stopwords
     #Lower casing
     #Tokenization
     #Stemming
     #Lemmatization
 
+
+import ReadingDataFiles as dataFiles
 import pandas as pd
-import string
-
-#########################################################  MY CODE   ###########################################################
-#reading the data
-#https://www.analyticsvidhya.com/blog/2021/06/text-preprocessing-in-nlp-with-python-codes/
-data = pd.read_csv('Data/Psych_data.csv', encoding="ISO-8859-1")
-#putting only the column that I needed from Psych_data.csv
-data = data[['Answer', 'Question']]
-#this is to read the data to a csv file
-data.to_csv('Data/trainingData.csv')
-
-
-#turn txt file to a csv file
-#then put it under a column
-#then find the word e.g human 1 and put it under a 2 separate columns e.g Question and answer
-firstConv = []
-secondConv = []
-with open('Data/human_chat.txt', encoding="utf8") as file:
-    NormalConv = file.readlines()
-    
-    #TO SEPARTE IT BY HUMAN 1 AND HUMAN 2
-    for i in NormalConv:   
-        #QUESTION KINDA SENTENCES
-        if "Human 2" in i:
-            firstConv.append(i) 
-            #print(data)
-        #ANSWERS KINDA SENTENCES
-        if "Human 1" in i:
-            secondConv.append(i)
-
-#df = pd.DataFrame(firstConv, columns = ['Question', 'Answer'])
-
-#PUT IT INTO THE TRAINING FILE
-# print(firstConv)
-
-
-#qna_chitchat_professional.tsv
-data3 = pd.read_csv("Data/qna_chitchat_professional.tsv", sep='\t')
-data3 = data3[['Answer', 'Question']]
-data3.to_csv('Data/trainingData.csv')
-
-print(data3)
-#https://www.geeksforgeeks.org/different-ways-to-create-pandas-dataframe/
-#df = pd.DataFrame(data, columns = ['Question', 'Answer'])
-
-
+import numpy as np
+import nltk
+from nltk.tokenize import RegexpTokenizer 
+#nltk.download("punkt")
+#nltk.download('stopwords') 
 
 ############################################# GOT THIS CODE FROM SOMEWHERE  ######################################################
 ###############   NEED TO EDIT IT TO PREPROCESS THE DATA FROM MY CSV TRAINING FILE
-"""
-#defining the function to remove punctuation
-string.punctuation
+#https://www.analyticsvidhya.com/blog/2021/06/text-preprocessing-in-nlp-with-python-codes/
 
-def remove_punctuation(text):
-    punctuationfree="".join([i for i in text if i not in string.punctuation])
-    return punctuationfree
+#DEFINING THE FUNCTION TO REMOVE PUNCTUATION AND TOKENIZE 
+#
+def remove_punctuation_tokenize(text):
+    #removes the punctuations
+    punctuationfree = nltk.RegexpTokenizer(r"\w+")
+    #tokenizes sentence - splits it into smaller parts
+    individual_words = punctuationfree.tokenize(text)
+    #print (new_words)
+    return individual_words
+
 #storing the puntuation free text
-data['Question']= data['Question'].apply(lambda x:remove_punctuation(x))
-data
+dataFiles.concate_data['CleanQuestion']= dataFiles.concate_data['Question'].apply(lambda x:remove_punctuation_tokenize(str(x))) #i put str(x), cause it expects it back as a string unless it gives an error
+dataFiles.concate_data['CleanAnswer']= dataFiles.concate_data['Answer'].apply(lambda x:remove_punctuation_tokenize(str(x)))
 
 
 
-#defining function for tokenization
-import re
-def tokenization(text):
-    tokens = re.split('W+',text)
-    return tokens
-#applying function to the column
-data['msg_tokenied']= data['msg_lower'].apply(lambda x: tokenization(x))
-
-
-
-#importing nlp library
-import nltk
-#Stop words present in the library
-stopwords = nltk.corpus.stopwords.words('english')
-stopwords[0:10]
-['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're"]
-
-#defining the function to remove stopwords from tokenized text
+#DEFINING THE FUNTION TO REMOVE STOPWORDS FROM TOKENIZED TEXT
 def remove_stopwords(text):
+    stopwords = nltk.corpus.stopwords.words('english')
     output= [i for i in text if i not in stopwords]
     return output
 
 #applying the function
-data['no_stopwords']= data['msg_tokenied'].apply(lambda x:remove_stopwords(x))
+#dataFiles['no_stopwords']= dataFiles['msg_tokenied'].apply(lambda x:remove_stopwords(x)) RemoveStopwordsQuestion
+dataFiles.concate_data['StopWordsAnswer']= dataFiles.concate_data['CleanAnswer'].apply(lambda x:remove_stopwords(x))
+print(dataFiles.concate_data['StopWordsAnswer'])
 
 
-
+"""""
 
 #importing the Stemming function from nltk library
 from nltk.stem.porter import PorterStemmer
@@ -108,7 +59,7 @@ porter_stemmer = PorterStemmer()
 def stemming(text):
 stem_text = [porter_stemmer.stem(word) for word in text]
     return stem_text
-data['msg_stemmed']=data['no_sw_msg'].apply(lambda x: stemming(x))
+dataFiles['msg_stemmed']=dataFiles['no_sw_msg'].apply(lambda x: stemming(x))
 
 
 
@@ -119,6 +70,6 @@ wordnet_lemmatizer = WordNetLemmatizer()
 def lemmatizer(text):
 lemm_text = [wordnet_lemmatizer.lemmatize(word) for word in text]
     return lemm_text
-data['msg_lemmatized']=data['no_stopwords'].apply(lambda x:lemmatizer(x))
+dataFiles['msg_lemmatized']=dataFiles['no_stopwords'].apply(lambda x:lemmatizer(x))
 
 """
