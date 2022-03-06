@@ -1,9 +1,9 @@
+#READING DATA FILES
 #I WANT TO PUT ALL THE DATA INTO ONE CSV FILE AS ID, QUESTION, ANSWER/ Response
 import pandas as pd
 
 
 #########################################################  MY CODE   ###########################################################
-#READING THE DATA
 
 #Psych_data.csv
 data = pd.read_csv('Data/Original/Psych_data.csv', encoding="ISO-8859-1")
@@ -55,7 +55,6 @@ data5 = data5[['answerText', 'questionText']]
 data5.rename(columns = {'answerText':'Answer'}, inplace = True)
 data5.rename(columns = {'questionText':'Question'}, inplace = True)
 #cleaning up the data : removing <p> & </p> 
-#NEED TO CONTINUE ON FROM HERE CLEANING THIS FILE
 data5['Answer'].replace("<p>",'',inplace=True, regex=True)
 data5['Answer'].replace("</p>",'',inplace=True, regex=True)
 
@@ -64,5 +63,9 @@ data5['Answer'].replace("</p>",'',inplace=True, regex=True)
 concate_data = pd.concat([data, data2, data3, data4])
 #drops if it has any missing values
 concate_data.dropna(axis=1)
-concate_data.to_csv('Data/trainingData.csv')
-print(concate_data.count())
+
+#REDO THE INDEX SO THAT IS STARTS FROM ONE AND GOES ON FROM THERE
+concate_data.reset_index(drop=True, inplace=True)
+##giving the column index as ID
+concate_data.index.name = "ID"
+#print(concate_data)
