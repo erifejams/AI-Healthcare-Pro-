@@ -1,17 +1,6 @@
-import csv
-import json
-#HAD TO INSTALL THE LIBRARY USING "pip install nltk"
-#from nltk
+#CREATING A MODEL USING SEQ2SEQ NEURAL NETWORK (FRAMEWORK )
 
-#starting here
-#basic chatbot build
-class Chatbot():
-    def __init__(self, name):
-        print(name)
-        self.name = name
-
-#printing name of AI
-if __name__ == "__main__":
-    ai = Chatbot(name = "Interactive Talker")
-
+###### SOURCE WHERE I AM GETTING THE CODE HELP FROM 
+#https://github.com/prasoons075/Deep-Learning-Codes/blob/master/Encoder%20Decoder%20Model/Encoder_decoder_model.ipynb
+#https://towardsdatascience.com/generative-chatbots-using-the-seq2seq-model-d411c8738ab5
 

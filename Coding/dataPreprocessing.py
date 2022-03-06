@@ -9,14 +9,15 @@
 
 import ReadingDataFiles as dataFiles
 import nltk
-from nltk.tokenize import RegexpTokenizer
 from nltk.stem import WordNetLemmatizer 
+#from nltk.tokenize import RegexpTokenizer
+
 #nltk.download("punkt")
 #nltk.download('stopwords') 
 #nltk.download('omw-1.4')
 
 #############################################  ######################################################
-###############   NEED TO EDIT IT TO PREPROCESS THE DATA FROM MY CSV TRAINING FILE
+###############  MADE EDITS TO THE CODE TO PREPROCESS THE DATA TO MAKE A TRAINING FILE 
 #https://www.analyticsvidhya.com/blog/2021/06/text-preprocessing-in-nlp-with-python-codes/
 
 #PUNCTUATION AND TOKENIZATION STEP
@@ -64,5 +65,16 @@ dataFiles.concate_data['QuestionLemmatized']= dataFiles.concate_data['tagginQues
 #REMOVING COLUMNS NOT NEEDED AGAIN
 dataFiles.concate_data.drop(['Question', 'Answer' ,'CleanQuestion', 'CleanAnswer', 'tagginQuestion', 'tagginAnswer'], axis = 1, inplace = True)
 
+
+#CHANGE THE NAME OF THE COLUMNS 
+dataFiles.concate_data.rename(columns={"QuestionLemmatized": "Question"}, inplace=True)
+dataFiles.concate_data.rename(columns={"AnswerLemmatized": "Answer"}, inplace=True)
+
+#change the orders of the columns
+column_names = ["Question", "Answer"]
+dataFiles.concate_data = dataFiles.concate_data.reindex(columns=column_names)
+
+#print(dataFiles.concate_data)
+
+#CREATE THE TRAINING DATA FILE
 dataFiles.concate_data.to_csv('Data/trainingData.csv')
-#print(dataFiles.concate_data['QuestionLemmatized'])
