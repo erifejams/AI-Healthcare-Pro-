@@ -1,9 +1,9 @@
 # AI-Healthcare-Pro-
 My final year project
 
- **<ins> Project Description</ins>**
+# Project Description
 
- **<ins> Installation</ins>** <br/>
+#Installation <br/>
 Python 3.9.10 <br/>
 Pip 22.0.4 <br/>
 Tensorflow-2.8.0 <br/>
