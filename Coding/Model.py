@@ -12,15 +12,15 @@ import os
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
 os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
-import pandas as pd
-from json.encoder import py_encode_basestring
+
 import tensorflow as tf
 from keras.models import Model
 from keras.layers import Input, LSTM, Dense
 #from keras.utils.vis_utils import plot_model
+import TrainingModel as tm
 
-trainingModel = pd.read_csv (r'Data/trainingData.csv')
 
+"""
 # configure
 num_encoder_tokens = 71
 num_decoder_tokens = 93
@@ -66,3 +66,4 @@ decoder_model = Model([decoder_inputs] + decoder_states_inputs, [decoder_outputs
 # summarize model
 #pydot.call_graphviz.plot_model(encoder_model, to_file='encoder_model.png', show_shapes=True)
 #plot_model(decoder_model, to_file='decoder_model.png', show_shapes=True)
+"""
