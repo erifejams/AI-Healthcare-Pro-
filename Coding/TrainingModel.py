@@ -43,10 +43,10 @@ QUESTION_VOCAB_SIZE = len(question_tokenizer.word_counts)+1
 
 # Marathi Word --> index dict
 answer_word_index= answer_tokenizer.word_index
-#marathi vocab size for decoder output
-MAR_VOCAB_SIZE = len(answer_tokenizer.word_counts)+1
+#answer vocab size for decoder output
+ANSWER_VOCAB_SIZE = len(answer_tokenizer.word_counts)+1
 
-# Getting max length of question and Marathi sentences
+# Getting max length of question and answer sentences
 max_question_len = 0
 for i in range(len(question_encoded)):
   if len(question_encoded[i]) > max_question_len:
@@ -66,7 +66,7 @@ question_padded= np.array(question_padded)
 answer_padded= np.array(answer_padded)
 
 #print(question_padded)
-#print(answer_encoded)
+#print(answer_padded)
 
 
 # Split data into train and test set
