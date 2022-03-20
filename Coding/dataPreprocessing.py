@@ -75,6 +75,8 @@ column_names = ["Question", "Answer"]
 dataFiles.concate_data = dataFiles.concate_data.reindex(columns=column_names)
 
 #print(dataFiles.concate_data)
-
+#print(dataFiles.concate_data.count())
+#print(dataFiles.concate_data['Question'].count())
+#print(dataFiles.concate_data['Answer'].count())
 #CREATE THE TRAINING DATA FILE
 dataFiles.concate_data.to_csv('Data/trainingData.csv')

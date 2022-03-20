@@ -1,6 +1,11 @@
 #CREATE TRAINING AND TEST LIST
 #Tokenizing the training data
+import os
 
+#have to include this or some libraries(in tensorflow) are not found before importing tensorflow
+#apparently this problem was only found in Python 3.9.10 not python
+#MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
+os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
 import numpy as np
 import pandas as pd

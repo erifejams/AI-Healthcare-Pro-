@@ -86,7 +86,7 @@ encoder_input_test = tm.X_test
 decoder_input_test = tm.y_test[:,:-1]
 decoder_target_test=  tm.y_test[:,1:]
 
-EPOCHS= 20 #@param {type:'slider',min:10,max:100, step:10 }
+EPOCHS= 2 #@param {type:'slider',min:10,max:100, step:10 }
 history = model.fit([encoder_input_data, decoder_input_data],decoder_target_data, 
                     epochs=EPOCHS, 
                     batch_size=5,
