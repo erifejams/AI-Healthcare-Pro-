@@ -9,12 +9,13 @@ os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/b
 from matplotlib import pyplot as plt
 from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.preprocessing import MinMaxScaler
-from keras.layers import Dense, LSTM, Bidirectional, Embedding, Concatenate, Attention, TimeDistributed
+from keras.layers import Dense, LSTM, Bidirectional, Embedding, Concatenate, Attention, TimeDistributed,  RepeatVector
 from keras import Input, Model
 
 
 import numpy as np
 import pandas as pd
+from tensorflow import keras as ks
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -71,12 +72,9 @@ for i in range(len(answer_encoded)):
     max_answer_len= len(answer_encoded[i])
 
 # Padding both
-question_padded = pad_sequences(question_encoded, maxlen = max_question_len, padding='post')
-answer_padded = pad_sequences(answer_encoded, maxlen = max_answer_len, padding='post')
+question_padded = pad_sequences(question_encoded, maxlen =17973, padding='post')
+answer_padded = pad_sequences(answer_encoded, maxlen = 17973, padding='post')
 
-# Convert to array
-question_padded= np.array(question_padded)
-answer_padded= np.array(answer_padded)
 
 #print(question_padded)
 #print(answer_padded)
@@ -96,54 +94,4 @@ train_x = list(training[:, 1])
 train_y = list(training[:, 2])
 #print(training)
 
-"""
-"""
-# Encoder input
-encoder_inputs = Input(shape=(max_question_len)) 
-
-# Embedding layer- i am using 1024 output-dim for embedding you can try diff values 100,256,512,1000
-enc_emb = Embedding(QUESTION_VOCAB_SIZE, 1024)(encoder_inputs)
-
-# Bidirectional lstm layer
-enc_lstm1 = Bidirectional(LSTM(512,return_sequences=True,return_state=True))
-##encoder_outputs1, forw_state_h, forw_state_c, back_state_h, back_state_c = enc_lstm1(enc_emb)
-encoder_output, forw_state_h, forw_state_c, back_state_h, back_state_c = enc_lstm1(enc_emb)
-
-
-# get Context vector
-encoder_states =[forw_state_h, forw_state_c, back_state_h, back_state_c]
-
-
-#  decoder input
-decoder_inputs = Input(shape=(max_answer_len)) 
-
-# decoder embedding with same number as encoder embedding
-dec_emb = Embedding(ANSWER_VOCAB_SIZE, 1024)(decoder_inputs) 
-# apply this way because we need embedding layer for prediction 
-
-# In encoder we used Bidirectional so it's having two LSTM's so we have to take double units(256*2=512) for single decoder lstm
-# LSTM using encoder's final states as initial state
-decoder_lstm = LSTM(512, return_sequences=True, return_state=True) 
-decoder_outputs, _, _ = decoder_lstm(dec_emb, initial_state = encoder_states)
-
-# Using Attention Layer
-#attention_layer = AttentionLayer()
-attention_layer = Attention()
-attention_result, attention_weights = attention_layer([encoder_output, decoder_outputs])
-
-# Concat attention output and decoder LSTM output 
-decoder_concat_input = Concatenate(axis=-1, name='concat_layer')([decoder_outputs, attention_result])
-
-# Dense layer with softmax
-decoder_dense = Dense(ANSWER_VOCAB_SIZE, activation='softmax')
-decoder_outputs = decoder_dense(decoder_concat_input)
-
-attention_result, attention_weights = attention_layer([encoder_output, decoder_outputs])
-dense1 = Dense(20, activation="relu")(attention_result)
-output = Dense(1, activation="sigmoid")
-
-# Define the model
-model = Model(inputs = [encoder_inputs, decoder_inputs], outputs = decoder_outputs)
-
-model.summary()
 """
