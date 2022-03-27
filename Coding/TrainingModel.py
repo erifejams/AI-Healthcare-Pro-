@@ -1,21 +1,15 @@
 #CREATE TRAINING AND TEST LIST
 #Tokenizing the training data
+
 import os
 #have to include this or some libraries(in tensorflow) are not found before importing tensorflow
 #apparently this problem was only found in Python 3.9.10 not python
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
 os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
-from matplotlib import pyplot as plt
-from sklearn.feature_selection import SequentialFeatureSelector
-from sklearn.preprocessing import MinMaxScaler
-from keras.layers import Dense, LSTM, Bidirectional, Embedding, Concatenate, Attention, TimeDistributed,  RepeatVector
-from keras import Input, Model
-
-
 import numpy as np
 import pandas as pd
-from tensorflow import keras as ks
+
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -23,13 +17,12 @@ from sklearn.model_selection import train_test_split
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
 
-training['Answer'] = training.Answer.apply(lambda x: 'start '+ x + ' stop')
-
 #print(training['Answer'])
-# Convert into list of sentence we need list to pass in tokenizer
+# this converts into a list
 question_list = training.Question.to_list()
 answer_list = training.Answer.to_list()
 
+#this turns the words into numbers input, so that it can be used for training the model
 def tokenize_sent(text):
   '''
   Take list on texts as input and 
@@ -71,10 +64,9 @@ for i in range(len(answer_encoded)):
   if len(question_encoded[i]) > max_answer_len:
     max_answer_len= len(answer_encoded[i])
 
-# Padding both
+# this pads the question and the response
 question_padded = pad_sequences(question_encoded, maxlen =17973, padding='post')
 answer_padded = pad_sequences(answer_encoded, maxlen = 17973, padding='post')
-
 
 #print(question_padded)
 #print(answer_padded)

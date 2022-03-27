@@ -1,9 +1,7 @@
-#CREATING A MODEL USING SEQ2SEQ NEURAL NETWORK (FRAMEWORK )
+#CREATING A MODEL USING NEURAL NETWORK (FRAMEWORK )
 
 ###### SOURCE WHERE I AM GETTING THE CODE HELP FROM 
-#https://github.com/prasoons075/Deep-Learning-Codes/blob/master/Encoder%20Decoder%20Model/Encoder_decoder_model.ipynb
-#https://towardsdatascience.com/generative-chatbots-using-the-seq2seq-model-d411c8738ab5
-
+#https://data-flair.training/blogs/python-chatbot-project/
 
 import os
 
@@ -12,36 +10,37 @@ import os
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
 os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
-
-import tensorflow as tf
-from keras.utils.vis_utils import plot_model
+import numpy as np
 import TrainingModel as tm
-from keras.layers import Dense, LSTM, Bidirectional, Embedding, Concatenate
-from keras import Input, Model
-from keras.layers.attention import Attention
+import tensorflow as tf
 
-def define_models(n_input, n_output, n_units):
-	# define training encoder
-	encoder_inputs = Input(shape=(None, n_input))
-	encoder = LSTM(n_units, return_state=True)
-	encoder_outputs, state_h, state_c = encoder(encoder_inputs)
-	encoder_states = [state_h, state_c]
-	# define training decoder
-	decoder_inputs = Input(shape=(None, n_output))
-	decoder_lstm = LSTM(n_units, return_sequences=True, return_state=True)
-	decoder_outputs, _, _ = decoder_lstm(decoder_inputs, initial_state=encoder_states)
-	decoder_dense = Dense(n_output, activation='softmax')
-	decoder_outputs = decoder_dense(decoder_outputs)
-	model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
-	# define inference encoder
-	encoder_model = Model(encoder_inputs, encoder_states)
-	# define inference decoder
-	decoder_state_input_h = Input(shape=(n_units,))
-	decoder_state_input_c = Input(shape=(n_units,))
-	decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]
-	decoder_outputs, state_h, state_c = decoder_lstm(decoder_inputs, initial_state=decoder_states_inputs)
-	decoder_states = [state_h, state_c]
-	decoder_outputs = decoder_dense(decoder_outputs)
-	decoder_model = Model([decoder_inputs] + decoder_states_inputs, [decoder_outputs] + decoder_states)
-	# return all models
-	return model, encoder_model, decoder_model
+
+from tensorflow import keras as ks
+from keras.layers import Dense, Dropout
+from keras.models import load_model
+from keras.optimizers import gradient_descent_v2
+
+#3 layers. First layer 53000 neurons, second layer 3000 neurons and 3rd output layer contains number of neurons
+# equal to number of intents to predict output intent with relu
+#had to reduce it because my laptop didn't have enough memory to run it
+model = ks.Sequential()
+model.add(Dense(3000, input_shape=(len(tm.X_train[0]),), activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(3000, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(len(tm.y_train[0]), activation='relu'))
+model.summary()
+
+# Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
+sgd = gradient_descent_v2.SGD(learning_rate = 0.05, nesterov=True)
+model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy'])
+#model.compile(loss='categorical_crossentropy', optimizer = 'adam', metrics=['accuracy'])
+#fitting and saving the model 
+chatbotModel = model.fit(np.array(tm.X_train), np.array(tm.y_train), epochs=100, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
+model.save('chatbot_model.h5', chatbotModel)
+print("model created")
+
+
+
+#ans_pred = model.predict(tm.X_train[0:3])
+#print (ans_pred[0])
