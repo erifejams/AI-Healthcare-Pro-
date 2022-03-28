@@ -61,7 +61,6 @@ dataFiles.concate_data['tagginAnswer']= dataFiles.concate_data['CleanAnswer'].ap
 #storing the Lemmatization
 dataFiles.concate_data['AnswerLemmatized']= dataFiles.concate_data['tagginAnswer'].apply(lambda x:lemmatizer(str(x)))
 dataFiles.concate_data['QuestionLemmatized']= dataFiles.concate_data['tagginQuestion'].apply(lambda x:lemmatizer(str(x)))
-
 #REMOVING COLUMNS NOT NEEDED AGAIN
 dataFiles.concate_data.drop(['Question', 'Answer' ,'CleanQuestion', 'CleanAnswer', 'tagginQuestion', 'tagginAnswer'], axis = 1, inplace = True)
 
