@@ -90,8 +90,15 @@ def messange_to_bot(sentences):
             break
         
         answer_index[0].append(predict)
+
         
-        sentence += tm.question_index_word[predict]
+        for i in tm.question_index_word:
+            if predict == i:
+                print(tm.question_index_word[i])
+                sentence += tm.question_index_word[i]
+            else:
+                continue
+        #sentence += tm.question_index_word[predict]
         
     return sentence
 

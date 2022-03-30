@@ -39,7 +39,7 @@ while True:
             print("InTa: it's no problem")
         else:
 
-            #tokenizing and padding
+            #TOKENIZING AND PADDING 
             tokenizer = Tokenizer()
             tokenizer.fit_on_texts(prediction_input)
             prediction_input = tokenizer.texts_to_sequences(prediction_input)
@@ -48,28 +48,30 @@ while True:
             print(str(prediction_input))
 
             label_enc = preprocessing.LabelEncoder()
-            #fit model
+            #FIT MODEL
             label_enc.fit(chatbotmodal)
 
 
-            #for i,j in zip(pred, y_train):
-                #print(np.argmax(i), np.argmax(j))
-
-            #predicting the response
+            #PREDICTING THE RESPONSE
             #output = label_enc.predict([prediction_input])[0]
             output = label_enc.predict(np.array([prediction_input]))[0]
             print(output)
             #to get the highest posibility
-            #output = np.argmax(output[0, -1, :])
+            #output_index = np.argmax(output[0, -1, :])
             #print(tm.training[int(output[0][0])])
 
-            #finding the right response 
-            #response_tag = label_enc.inverse_transform(output)
-            print("InTa: ", str(output))
+            """
+            if output[output_index] > 0.70:
+                #finding the right response 
+                #response_tag = label_enc.inverse_transform(output)
+                print("InTa: ", str(output))
+            else:
+                print("I don’t fully understand")
+            """
 
-            #there is no prediction that it can come up with 
+            #IF THERE IS NO PREDICTION THAT IT CAN COME UP WITH 
             if prediction_input == 0:
-                print("InTa: I don't understand, can you repeat?")
+                print("InTa: I don't understand, more like I'm not sure what to say to that?")
                
 
     if(prediction_input == "goodbye"):

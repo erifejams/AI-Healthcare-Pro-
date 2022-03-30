@@ -1,9 +1,3 @@
-/**
-* Template Name: Bikin - v4.7.0
-* Template URL: https://bootstrapmade.com/bikin-free-simple-landing-page-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 /*--------------------------------------------------------------
 # General
@@ -114,27 +108,13 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: yellow;
-  border-bottom: 2px solid #eceefe;
+  background: rgb(197, 195, 49);
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
 }
-#header .logo {
-  font-size: 30px;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-family: "Poppins", sans-serif;
-}
-#header .logo a {
-  color: yellowgreen;
-}
-#header .logo img {
-  max-height: 40px;
-}
+
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -333,15 +313,17 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
   height: 100vh;
-  background: white;
+  background: yellow;
   border-bottom: 2px solid white;
   text-align: center;
+  padding-top: 260px;
 }
 #hero .container {
   padding-top: 70px;
@@ -361,22 +343,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
   color: #2d405f;
 }
-#hero .btn-get-started {
-  font-family: "Krub", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: block;
-  padding: 8px 32px 10px 32px;
-  margin-top: 25px;
-  border-radius: 5px;
-  transition: 0.5s;
+
+/*doing the background of the speech bubble*/
+.speech-bubble {
+  background: #0fc8e0;
   color: #fff;
-  background: #3b4ef8;
+  padding: 15.19em 15em;
+  position: relative;
+  border-radius: 0 0.25em 0.25em 0.25em; 
+  box-shadow: 20px 80px 40px #664400;  /*shadow for background*/
+  animation: speech .7s linear 1;
 }
-#hero .btn-get-started:hover {
-  background: #0a22f6;
-}
+
+
 #hero .hero-img {
   max-width: 60%;
   margin-top: 40px;
@@ -445,7 +424,7 @@ section {
 # Team
 --------------------------------------------------------------*/
 .team {
-  background: #fff;
+  background: rgb(233, 233, 233);
   padding: 60px 0;
 }
 .team .member {
@@ -570,9 +549,10 @@ section {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
---------------------------------------------------------------*/
 #footer {
+  margin-top:100px;
   color: #444444;
   font-size: 14px;
-  background: yellow;
+  background: #f1f3ff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }

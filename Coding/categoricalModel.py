@@ -23,6 +23,21 @@ from keras.optimizers import gradient_descent_v2
 from matplotlib import pyplot as plt #to plot the graph
 
 
+
+#THIS IS TO READ THE TRAINING DATA
+training = pd.read_csv (r'Data/trainingData.csv')
+
+
+#initialize and set analyzer=word as we want to vectorize words not characters
+cv=CountVectorizer
+
+#VECTORIZED STEP
+#train or fit the vectorizer with all words
+#and transform into one-hot encoded vector
+vectorize=cv.fit([' '.join(self.words)])
+word_vector=vectorize.transform([training.Question]).toarray().tolist()[0]
+
+
 ##BUILDING A NEURAL NETWORK
 #3 layers. First layer 3120 neurons, second layer 3120 neurons and 3rd output layer contains number of neurons to predict output with sigmoid, which is 585
 #3120 inputs(from length of input) -> [3120 hidden nodes] -> [3120 2ndhidden nodes] -> 585 outputs

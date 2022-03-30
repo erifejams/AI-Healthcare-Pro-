@@ -42,7 +42,7 @@ model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy
 #fitting the model
 #chatbotModel = model.fit(np.array(X_train), np.array(y_train), epochs=200, batch_size = 8, validation_data=(tm.X_test, tm.y_test), verbose=1)
 #to make it go process faster, it it turned into a numpy array
-chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=250, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
+chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=900, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
 
 #saving the model 
 model.save('binaryChatbot_model3.h5', chatbotModel)

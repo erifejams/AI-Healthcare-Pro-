@@ -40,10 +40,10 @@ answer_tokenizer, answer_encoded = tokenize_sent(text = answer_list)
 
 # question Word --> index dictionary
 question_index_word = question_tokenizer.index_word
-
+#print(question_index_word[2])
 # question Index --> word dictionary
 question_word_index = question_tokenizer.word_index
-#print(question_word_index)
+#print(question_word_index["'prp'"])
 
 # size of question vocabulary for encoder input
 # For zero padding we have to add +1 in size

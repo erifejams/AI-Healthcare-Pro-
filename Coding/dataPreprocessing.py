@@ -47,8 +47,6 @@ def lemmatizer(text):
     return str(lemm_text)
 
 
-#VECTORIZED STEP
-
 
 #storing the puntuation and tokenized text 
 dataFiles.concate_data['CleanQuestion']= dataFiles.concate_data['Question'].apply(lambda x:remove_punctuation_tokenize(str(x))) #i put str(x), cause it expects it back as a string unless it gives an error
