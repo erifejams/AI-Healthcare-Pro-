@@ -5,6 +5,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  background-color: yellow;
 }
 
 a {
@@ -115,7 +116,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -168,149 +168,68 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   background: #3b4ef8;
 }
-.navbar .dropdown ul {
-  display: block;
-  position: absolute;
-  left: 14px;
-  top: calc(100% + 30px);
-  margin: 0;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 0;
-  visibility: hidden;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  transition: 0.3s;
-  border-radius: 4px;
+
+/*--------------------------------------------------------------
+# How does Inta Help You Section
+--------------------------------------------------------------*/
+#Features {
+  background-color:yellow;
+  height: 80vh;
+  padding-top: 150px;
 }
-.navbar .dropdown ul li {
-  min-width: 200px;
+.boxes {
+  padding-top:40px;
+  padding-bottom: 100px;
+  text-align: center;
 }
-.navbar .dropdown ul a {
-  padding: 10px 20px;
-  text-transform: none;
-  font-weight: 500;
-}
-.navbar .dropdown ul a i {
-  font-size: 12px;
-}
-.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #3b4ef8;
-}
-.navbar .dropdown:hover > ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-}
-.navbar .dropdown .dropdown ul {
-  top: 0;
-  left: calc(100% - 30px);
-  visibility: hidden;
-}
-.navbar .dropdown .dropdown:hover > ul {
-  opacity: 1;
-  top: 0;
-  left: 100%;
-  visibility: visible;
-}
-@media (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
-    left: -90%;
-  }
-  .navbar .dropdown .dropdown:hover > ul {
-    left: -100%;
-  }
+#left {
+  left:20%;
+  position:absolute;
+  width:380px;
+  height:360px;
+  background-color:rgba(20, 165, 223, 0.904);
+  border:rgba(20, 165, 223, 0.904);
 }
 
-/**
-* Mobile Navigation 
-*/
-.mobile-nav-toggle {
+#middle {
+  left:40%;
+  position:absolute;
+  width:380px;
+  height:360px;
+  background-color:white; 
+  border:white;
+  margin-left:20px;
+  padding: 30;
+}
+
+#right {
+  left:57.8%;
+  position:absolute;
+  width:380px;
+  height:360px;
+  background-color: rgb(179, 240, 13); 
+  border: rgb(179, 240, 13);
+  margin-left:80px;
+}
+
+#Features h2 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  width: 90%;
   color: #2d405f;
-  font-size: 28px;
-  cursor: pointer;
-  display: none;
-  line-height: 0;
-  transition: 0.5s;
-}
-.mobile-nav-toggle.bi-x {
-  color: #fff;
+  text-align: center;
+  padding-left: 230px;
 }
 
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-    display: block;
-  }
+#Features p {
+  padding-top: 50px;
+  text-align: center;
+}
 
-  .navbar ul {
-    display: none;
-  }
-}
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(29, 41, 60, 0.9);
-  transition: 0.3s;
-  z-index: 999;
-}
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  border-radius: 6px;
-  background-color: #fff;
-  overflow-y: auto;
-  transition: 0.3s;
-}
-.navbar-mobile a, .navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #2d405f;
-}
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #3b4ef8;
-}
-.navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
-  margin: 15px;
-}
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #3b4ef8;
-}
-.navbar-mobile .dropdown > .dropdown-active {
-  display: block;
+#Features h4 {
+  padding-top: 50px;
+  text-align: center;
 }
 
 
@@ -319,15 +238,17 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  height: 100vh;  /*this is the height of the background*/
   background: yellow;
-  border-bottom: 2px solid white;
-  text-align: center;
-  padding-top: 260px;
+  /*border-bottom: 2px solid white;*/
+  text-align: center; /*center the text*/
+  padding-top: 490px;
 }
+
 #hero .container {
   padding-top: 70px;
 }
+
 #hero h1 {
   margin: 0;
   font-size: 48px;
@@ -335,20 +256,18 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 56px;
   color: #141d2b;
   width: 60%;
-  color: #2d405f;
-}
-#hero h2 {
-  color: #466393;
-  margin: 15px 0 0 0;
-  font-size: 24px;
-  color: #2d405f;
+  color: #01fe87;
+  position: relative;
+  -webkit-text-stroke: 0.3vw #383d52; /*shades it the*/
+  text-transform: uppercase;
+  padding-bottom: 450px;
 }
 
 /*doing the background of the speech bubble*/
 .speech-bubble {
   background: #0fc8e0;
   color: #fff;
-  padding: 15.19em 15em;
+  padding: 15.19em 85em;
   position: relative;
   border-radius: 0 0.25em 0.25em 0.25em; 
   box-shadow: 20px 80px 40px #664400;  /*shadow for background*/
@@ -389,7 +308,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f6f8fb;
+  background-color: yellow;
 }
 
 .section-title {
@@ -418,15 +337,77 @@ section {
   margin-bottom: 0;
 }
 
+/*--------------------------------------------------------------
+# Quotes Section
+--------------------------------------------------------------*/
 
+#Quotes {
+  background-color:yellow;
+  border-bottom: 2px solid white;
+  height: 80vh;
+  padding-top: 300px; /*to give section between the previous space and this section*/
+}
+
+.generalQuotesBox{
+  width: 185vmin;
+  height: 400px;
+  position: absolute;
+  transform: translate(-50%,-50%); /*to make it in the middle of the page*/
+  left: 50%;
+  overflow: hidden;
+  border: 10px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 10px 25px 30px rgba(0,0,0,0.3);
+  background: #f1f1f1f1;
+}
+
+/* Slides */
+.mySlides {
+  padding: 80px;
+  font-size: 50px;
+  text-align: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+.author {
+  color: rgb(214, 195, 21);
+}
 
 /*--------------------------------------------------------------
-# Team
+# About Me - the developer
 --------------------------------------------------------------*/
 .team {
-  background: rgb(233, 233, 233);
+  background: #0fc8e0;
   padding: 60px 0;
 }
+
 .team .member {
   text-align: center;
   margin-bottom: 20px;
@@ -436,6 +417,7 @@ section {
   overflow: hidden;
   left: calc(150% - 25px); /*TO GET THE IMAGE CENTERE*/
 }
+
 .team .member .member-info {
   opacity: 0;
   position: absolute;
@@ -445,6 +427,7 @@ section {
   right: 0;
   transition: 0.2s;
 }
+
 .team .member .member-info-content {
   position: absolute;
   left: 0;
@@ -452,18 +435,21 @@ section {
   bottom: 10px;
   transition: bottom 0.4s;
 }
+
 .team .member .member-info-content h4 {
   font-weight: 700;
   margin-bottom: 2px;
   font-size: 18px;
   color: #fff;
 }
+
 .team .member .member-info-content span {
   font-style: italic;
   display: block;
   font-size: 13px;
   color: #fff;
 }
+
 .team .member .social {
   position: absolute;
   left: 0;
@@ -473,29 +459,35 @@ section {
   transition: bottom ease-in-out 0.4s;
   text-align: center;
 }
+
 .team .member .social a {
   transition: color 0.3s;
   color: rgba(255, 255, 255, 0.7);
   margin: 0 10px;
   display: inline-block;
 }
+
 .team .member .social a:hover {
   color: #fff;
 }
+
 .team .member .social i {
   font-size: 18px;
   margin: 0 2px;
 }
+
 .team .member:hover .member-info {
   background: linear-gradient(0deg, rgba(12, 17, 26, 0.9) 0%, rgba(20, 29, 43, 0.8) 20%, rgba(0, 212, 255, 0) 100%);
   opacity: 1;
   transition: 0.4s;
 }
+
 .team .member:hover .member-info-content {
   bottom: 60px;
   transition: bottom 0.4s;
   transition: bottom 0.4s;
 }
+
 .team .member:hover .social {
   bottom: 0;
   transition: bottom ease-in-out 0.4s;
@@ -504,30 +496,30 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+.contact{
+  background: yellow;
+}
+
 .contact .info-box {
-  color: #2d405f;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 20px 0 30px 0;
-  background: #fff;
+  background: rgb(238, 238, 238);
 }
+
 .contact .info-box i {
   font-size: 32px;
   color: #3b4ef8;
   padding: 8px;
 }
-.contact .info-box h3 {
-  font-size: 20px;
-  color: #777777;
-  font-weight: 700;
-  margin: 10px 0;
-}
+
 .contact .info-box p {
   padding: 0;
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
 }
+
 @-webkit-keyframes animate-loading {
   0% {
     transform: rotate(0deg);
@@ -553,6 +545,6 @@ section {
   margin-top:100px;
   color: #444444;
   font-size: 14px;
-  background: #f1f3ff;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  background: rgb(197, 195, 49);
 }

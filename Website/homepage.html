@@ -33,23 +33,29 @@
         <!------------- HEADER -------------->
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center justify-content-between">
+                <!-- logo -->
+                <div>
+                    <a >
+                        <!-- logo: here for you -->
+                        <img src="assets/img/logo.png" alt="this is the logo" width="80" height="80">
+                    </a>
+                </div>
+                <!-- /logo -->
+                
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a href="homepage.html">Home</a></li>
                         <li><a href="chatbot.html">Chat with InTa</a></li>
                         <li><a href="contactOrgansiations.html">Mental Health Organisations</a></li>
                         <li><a href="FAQ.html">FAQ</a></li>
                     </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
-        
             </div>
         </header>
 
 
 
-        <!------------- START SECTION-------------->
-        <section id="hero" class="d-flex align-items-center">
+        <!------------- Start section-------------->
+        <section id = "hero" class="d-flex align-items-center">
             <h1>Interactive Talker</h1>
             <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
                 <img src="assets/img/hero-img.png" class="img-fluid hero-img" alt="" data-aos="zoom-in" data-aos-delay="150">
@@ -61,6 +67,92 @@
             </div>
         </section>
 
+        <!-------------How does Inta Help You Section-------------->
+        <section id = "Features">
+            <h2>How does InTa help you?</h2>
+            <div class = "boxes" data-aos="fade-up">
+                <div id = "left">
+                    <h4>Chat</h4>
+                    <p>
+                        Talk with InTa at your own convenience.
+                    </p>
+                </div>
+
+                <div id = "middle">
+                    <h4>Mood Evaluation</h4>
+                    <p>
+                        Interactive Talker contains a feature to with analysis your mood based on your chat with the InTa.
+                    </p>
+                </div>
+
+                <div id = "right">
+                    <h4>Free Anywhere and Anytime </h4>
+                    <p>
+                        Interactive Talker is free to use and can be used along side therapy sessions. 
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!------------- Quotes Section-------------->
+
+        <section id = "Quotes">
+            <div class="generalQuotesBox" >
+                
+                <div class="slideshow-container">
+
+                    <!-- Got the quotes from this website
+                        https://www.goodhousekeeping.com/life/g22521771/happy-quotes/?slide=30
+                     -->
+                    <div class="mySlides">
+                        <q>Every day is a new day</q>
+                        <p class="author">- Carrie Underwood</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>The most important thing is to enjoy your life - to be happy. It's all that matters</q>
+                        <p class="author">- Audrey Hepburn</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>Embrace the glorious mess that you are</q>
+                        <p class="author">- Elizabeth Gilbert</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>Happiness comes in waves. It'll find you again</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>Happiness is letting go of what you think life is supposed to look like.</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>When it rains, look for rainbows. When it's dark, look for stars.</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>Happiness comes in waves. It'll find you again</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <!-- Next/prev buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                
+                <!-- Dots/bullets/indicators -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+  
+        </section>
 
         <!-------------Developer Info Section-------------->
         <section id="team" class="team">
@@ -96,15 +188,15 @@
         <section id="contact" class="contact section-bg">
             <div class="container" data-aos="fade-up">
       
-              <div class="section-title">
-                <h2>Contact</h2>
-                <p>For more information about the development of this project or anything else.</p>
-              </div>
+                <div class="section-title">
+                    <h2>Contact</h2>
+                    <p>For more information about the development of this project or anything else.</p>
+                </div>
       
-              <div class="info-box mt-4">
-                <h3>Email</h3>
-                <p>erifeoluwa@gmail.com</p>
-              </div>
+                <div class="info-box mt-4">
+                    <h3>Email</h3>
+                    <p>erifeoluwa@gmail.com</p>
+                </div>
             </div>
         </section>
 
@@ -113,11 +205,13 @@
         <!-------------FOOTER-------------->
         <footer id="footer">
             <div class="container d-md-flex py-4">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Erifeoluwa Jamgbadi</span></strong>. All Rights Reserved
+                <div class="container">
+                    <div class="copyright">
+                        &copy; Copyright <strong><span>Erifeoluwa Jamgbadi</span></strong>. All Rights Reserved
+                    </div>
                 </div>
             </div>
-        </footer>
+        </footer><!-- End Footer -->
 
         
         <!---this is to go up when scrolled to the very bottom of page-->
@@ -134,6 +228,8 @@
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/quotesSlideshowHomepage.js"></script> <!--for the quotes slideshow--->
+        
 
     </body>
 </html>
