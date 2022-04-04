@@ -111,6 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+/*settings for the header section*/
 #header {
     background: rgb(197, 195, 49);
     transition: all 0.5s;
@@ -128,6 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     padding: 0;
 }
+
 .navbar ul {
     margin: 0;
     padding: 0;
@@ -135,9 +137,11 @@ h1, h2, h3, h4, h5, h6 {
     list-style: none;
     align-items: center;
 }
+
 .navbar li {
     position: relative;
 }
+
 .navbar a, .navbar a:focus {
     display: flex;
     align-items: center;
@@ -150,14 +154,17 @@ h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
     transition: 0.3s;
 }
+
 .navbar a i, .navbar a:focus i {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
 }
+
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
     color: #3b4ef8;
 }
+
 .navbar .getstarted, .navbar .getstarted:focus {
     background: #e2e5fe;
     padding: 9px 25px;
@@ -167,14 +174,159 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     color: #3b4ef8;
 }
+
 .navbar .getstarted:hover, .navbar .getstarted:focus:hover {
     color: #fff;
     background: #3b4ef8;
 }
 
 /*--------------------------------------------------------------
+# FAQ Section
+--------------------------------------------------------------*/
+#FAQ{
+    padding-top: 200px; /*to make sure the text goes down, so it is visible*/
+}
+
+/*to center the text*/
+#FAQ h2{
+    text-align: center;
+}
+
+/*body of the accordian*/
+.accordion {
+    width: 800px;
+    margin: 90px auto;
+    color: black;
+    background-color: #0fc8e0;
+    padding: 45px 45px;
+}
+ 
+.accordion2{
+    width: 800px;
+    margin: 90px auto;
+    color: black;
+    background-color: rgb(179, 240, 13);
+    padding: 45px 45px;
+}
+
+/* setting for the question  part and sets the cursorto be a pointer */
+.accordion .question {
+    position: relative;
+    padding: 10px 0;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+/* setting for the question  part and sets the cursorto be a pointer */
+.accordion2 .question {
+    position: relative;
+    padding: 10px 0;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+
+/* Positions the plus sign 5px from the right. 
+Centers it using the transform property. */
+.accordion .question::before {
+    content: '+';
+    color: black;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    font-size: 30px;
+    transform: translateY(-50%);
+}
+
+.accordion2 .question::before {
+    content: '+';
+    color: black;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    font-size: 30px;
+    transform: translateY(-50%);
+}
+
+/* Hides the content by setting height: 0*/
+.accordion .answer {
+    position: relative;
+    background: #0fc8e0;
+    height: 0;
+    font-size: 20px;
+    text-align: justify;
+    width: 700px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.accordion2 .answer {
+    position: relative;
+    background: rgb(179, 240, 13);
+    height: 0;
+    font-size: 20px;
+    text-align: justify;
+    width: 700px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+  
+/* reveals the answer part. sets the height and width of answer*/
+.accordion .accordianBox.active .answer {
+    height: 205px;
+    width: 700px;
+}
+  
+.accordion2 .accordianBox.active .answer {
+    height: 150px;
+    width: 700px;
+}
+
+/* Changes from plus sign to negative sign when answer box is shown */
+.accordion .accordianBox.active .question::before {
+    content: '-';
+    font-size: 30px;
+}
+
+.accordion2 .accordianBox.active .question::before {
+    content: '-';
+    font-size: 30px;
+}
+
+/*this is the first grid*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*puts the boxes side by side*/
+    grid-gap: 10em;
+    padding-top: 60px;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+  
+.grid-item {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    width: 370px;
+    border-bottom: 2px solid black;
+}
+
+/*this is the second grid*/
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*puts the boxes side by side*/
+    grid-gap: 10em; /*space between the grid*/
+    padding-top: 60px;
+    padding-left: 550px;
+    padding-right: 250px;
+}
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+/*settings for the footer section*/
 #footer {
     margin-top:100px;
     color: #444444;
