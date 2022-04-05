@@ -67,6 +67,38 @@ while True:
                 print("InTa: ", str(output))
             else:
                 print("I don’t fully understand")
+
+
+            def chat_with_bot():
+            checkpoint = './checkpoint.ckpt'
+            session = tf.InteractiveSession()
+            session.run(tf.global_variables_initializer())
+            saver = tf.train.Saver()
+            saver.restore(session, checkpoint)
+            while True:
+            question = input("You: ")
+            if(question == 'Goodbye'):
+                break
+            else:
+                question = convert_string2int(question, questionswords2int)
+                question = question + [questionswords2int['<PAD>']] * (20 - len(question))
+                fake_batch = np.zeros((batch_size, 20))
+                fake_batch[0] = question
+                predicted_answer = session.run(test_predictions, {input: fake_batch, keep_prob: 0.5})[0]
+                answer = ''
+                for i in np.argmax(predicted_answer, 1):
+                    if answersints2word[i] == 'i':
+                        token = 'I'
+                    elif answersints2word[i] == '<EOS>':
+                        token = '.'
+                    elif answersints2word[i] == '<OUT>':
+                        token = 'out'
+                    else:
+                        token = ' ' + answersints2word[i]
+                    answer += token
+                    if token == '.':
+                        break
+                print('Chatbot:', answer)
             """
 
             #IF THERE IS NO PREDICTION THAT IT CAN COME UP WITH 

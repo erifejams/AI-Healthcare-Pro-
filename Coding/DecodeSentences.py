@@ -10,7 +10,7 @@ from pythainlp.spell import correct
 from pythainlp.util import normalize
 
 #loading the modal
-chatbotmodal = load_model('./chatbot_model2.h5', compile = False)
+chatbotmodal = load_model('./models/binaryChatbot_model3.h5', compile = False)
 
 """
 input_features_dict = dict(
@@ -76,7 +76,7 @@ def preprocessing(inputs):
     
     return inputs
 
-def messange_to_bot(sentences):
+def messange_to_bot(sentences ):
     sentence = ''
     word = preprocessing([sentences])
     continued = True
@@ -84,25 +84,27 @@ def messange_to_bot(sentences):
     while continued:
         x = np.array(pad_sequences(word, maxlen=3120))
         predict = np.argmax(chatbotmodal.predict([x]), axis=1)[0]
-        
+        #print(predict)
         if predict == 0:
             continued = False
             break
         
         answer_index[0].append(predict)
 
-        
-        for i in tm.question_index_word:
-            if predict == i:
-                print(tm.question_index_word[i])
-                sentence += tm.question_index_word[i]
-            else:
-                continue
-        #sentence += tm.question_index_word[predict]
-        
+        if predict != 0:
+            for i in tm.question_index_word:
+                if predict == i:
+                    sentence += tm.question_index_word[i]
+                    break
+                else:
+                    #print(sentence)
+                    break
+                    #sentence += tm.question_index_word[predict]
     return sentence
 
-
+text = "hello"
+print(messange_to_bot(text))
+"""
 def talk_with_bot():
     while True:
         text = input('You : ')
@@ -111,3 +113,5 @@ def talk_with_bot():
         print('InTa :', messange_to_bot(text))
 
 talk_with_bot()
+
+"""

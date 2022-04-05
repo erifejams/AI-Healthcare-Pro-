@@ -30,7 +30,7 @@ def tokenize_sent(text):
   tokenizer = Tokenizer()
   tokenizer.fit_on_texts(text)
 
-  #returning the tokenizer and enocoded text
+  #returning the tokenizer and encoded text
   return tokenizer, tokenizer.texts_to_sequences(text)
 
 

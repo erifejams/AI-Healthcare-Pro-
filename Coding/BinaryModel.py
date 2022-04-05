@@ -42,15 +42,33 @@ model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy
 #fitting the model
 #chatbotModel = model.fit(np.array(X_train), np.array(y_train), epochs=200, batch_size = 8, validation_data=(tm.X_test, tm.y_test), verbose=1)
 #to make it go process faster, it it turned into a numpy array
-chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=900, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
+chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=20, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
 
 #saving the model 
-model.save('binaryChatbot_model3.h5', chatbotModel)
+model.save('models/binaryChatbot_model3.h5', chatbotModel)
 print("model created")
 
 #this is to make a graph from the accuracy and loss of the chatbot model made
 plt.plot(chatbotModel.history['accuracy'], label='training set accuracy')
 plt.plot(chatbotModel.history['loss'], label = 'training set loss')
 plt.show()
-plt.legend()
 plot_model(model(), show_shapes=True)
+plt.savefig('graphs/model accuracy')
+
+#accuracy vs validation accuracy
+plt.plot(chatbotModel.history['accuracy'])
+plt.plot(chatbotModel.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.show()
+plt.savefig('graphs/model accuracy')
+
+#loss vs validation loss
+plt.plot(chatbotModel.history['loss'])
+plt.plot(chatbotModel.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.show()
+plt.savefig('graphs/model loss')
