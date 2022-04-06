@@ -46,6 +46,68 @@
             </div>
         </header>
 
+        <!------------- Quotes Section-------------->
+
+        <section id = "Quotes">
+            <div class="generalQuotesBox" >
+                
+                <div class="slideshow-container">
+
+                    <!-- Got the quotes from this website
+                        https://www.goodhousekeeping.com/life/g22521771/happy-quotes/?slide=30
+                     -->
+
+                    <div class="mySlides">
+                        <q>Some days are going to be more of a struggle than others. That is okay and you need to forgive yourself in order to keep going—and growing.</q>
+                        <p class="author">- Sara Ahmed</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>Self-care is how you take your power back.</q>
+                        <p class="author">- Lalah Delia</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>The challenge is not to be perfect — it is to be whole.</q>
+                        <p class="author">- Jane Fonda</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>You often feel tired not because you’ve ⁠done too much, but because you’ve done too little of what sparks joy in you</q>
+                        <p class="author">- Alexander Den</p>
+                    </div>
+                
+
+                    <div class="mySlides">
+                        <q>How long should you try? Until.</q>
+                        <p class="author">- Jim Rohn</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>if you change the way you look at things, the things you look at change.</q>
+                        <p class="author">- Wayne Dyer</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>I can be changed by what happens to me, but I refuse to be reduced by it.</q>
+                        <p class="author">- Maya Angelou</p>
+                    </div>
+
+                    <!-- Next/prev buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                
+                <!-- Dots/bullets/indicators -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+  
+        </section>
+
         <!--to make the accordian to answer questions about mental health -->
         <section id = "FAQ">
 
@@ -160,18 +222,18 @@
                 <div class="grid">
                     <div class="grid-item">
                         <!-- logo to signify sleep-->
-                        <img src="assets/img/sleep.png" alt="this is a logo to represent sleeping" width="60" height="80">
+                        <img src="assets/img/logosFaqPage/sleep.png" alt="this is a logo to represent sleeping" width="60" height="80">
                         <br>
                         Sleep
                     </div>
                     <div class="grid-item">
-                        <img src="assets/img/sportsLogo.png" alt="this is a logo to represent doing sports" width="100" height="80">
+                        <img src="assets/img/logosFaqPage/sportsLogo.png" alt="this is a logo to represent doing sports" width="100" height="80">
                         <br>
                         Exercise
                     </div>
                     <div class="grid-item">
                         <!-- logo to signify support group -->
-                        <img src="assets/img/support.png" alt="this is a logo to represent support group" width="160" height="100">
+                        <img src="assets/img/logosFaqPage/support.png" alt="this is a logo to represent support group" width="160" height="100">
                         <br>
                         Support Groups
                     </div>
@@ -181,12 +243,12 @@
                 <div class="grid2">
                     <div class="grid-item">
                         <!-- logo to signify relaxing-->
-                        <img src="assets/img/relax.png" alt="this is a logo to represent sleeping" width="100" height="80">
+                        <img src="assets/img/logosFaqPage/relax.png" alt="this is a logo to represent sleeping" width="100" height="80">
                         <br>
                         Relax
                     </div>
                     <div class="grid-item">
-                        <img src="assets/img/friends.png" alt="this is a logo to represent doing sports" width="100" height="80">
+                        <img src="assets/img/logosFaqPage/friends.png" alt="this is a logo to represent doing sports" width="100" height="80">
                         <br>
                         Talk with close ones
                     </div>
@@ -206,5 +268,8 @@
 
       <!--for the quotes accordian, the link to the javascript file--->
       <script src="assets/js/FAQAccordian.js"></script> 
+        <!-- for the quotes slideshow -->
+        <script src="assets/js/quotesSlideshowHomepage.js"></script> <!--for the quotes slideshow--->
+       
     </body>
 </html>

@@ -15,7 +15,6 @@ os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/b
 import numpy as np
 import TrainingModel as tm
 import tensorflow as tf
-import string
 import pandas as pd
 
 from sklearn.preprocessing import LabelEncoder
@@ -31,9 +30,8 @@ from matplotlib import pyplot as plt #to plot the graph
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
 
-training = training.values
-X = training[:,1]
-Y = training[:,2]
+X = training['Question']
+Y = training['Answer']
 # encode class values as integers
 encoder = LabelEncoder()
 encoder.fit(Y)
@@ -57,7 +55,7 @@ model.summary()
 
 # Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
 sgd = gradient_descent_v2.SGD(learning_rate = 0.001, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer = sgd, metrics=['accuracy'])
+model.compile(loss='sparse_categorical_crossentropy', optimizer = sgd, metrics=['accuracy'])
 #fitting the model
 #chatbotModel = model.fit(np.array(X_train), np.array(y_train), epochs=200, batch_size = 8, validation_data=(tm.X_test, tm.y_test), verbose=1)
 #to make it go process faster, it it turned into a numpy array
@@ -70,8 +68,7 @@ print("model created")
 plt.plot(categoricalChatbotModel.history['accuracy'], label='training set accuracy')
 plt.plot(categoricalChatbotModel.history['loss'], label = 'training set loss')
 plt.show()
-plot_model(model(), show_shapes=True)
-
+plt.savefig('graphs/accuracy vs loss')
 
 #accuracy vs validation accuracy
 plt.plot(categoricalChatbotModel.history['accuracy'])
@@ -80,8 +77,7 @@ plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.show()
-plot_model(model(), show_shapes=True)
-plt.savefig('graphs/model accuracy for categorical')
+plt.savefig('graphs/model accuracy vs validation accuracy')
 
 #loss vs validation loss
 plt.plot(categoricalChatbotModel.history['loss'])
@@ -90,5 +86,5 @@ plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.show()
-plt.savefig('graphs/model loss for categorical ')
+plt.savefig('graphs/model loss vs validation loss')
 

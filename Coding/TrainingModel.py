@@ -27,7 +27,7 @@ answer_list = training.Answer.to_list()
 #input was taken as list
 def tokenize_sent(text):
 
-  tokenizer = Tokenizer()
+  tokenizer = Tokenizer(num_words=18976)
   tokenizer.fit_on_texts(text)
 
   #returning the tokenizer and encoded text
@@ -49,6 +49,7 @@ question_word_index = question_tokenizer.word_index
 # For zero padding we have to add +1 in size
 QUESTION_VOCAB_SIZE = len(question_tokenizer.word_counts)+1 #18976
 
+answer_index_word = answer_tokenizer.index_word
 # answer Word --> index dict
 answer_word_index= answer_tokenizer.word_index 
 #answer vocab size for decoder output

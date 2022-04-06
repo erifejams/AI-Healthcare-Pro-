@@ -23,81 +23,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
-.back-to-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 996;
-  background: #3b4ef8;
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  transition: all 0.4s;
-}
-.back-to-top i {
-  font-size: 28px;
-  color: #fff;
-  line-height: 0;
-}
-.back-to-top:hover {
-  background: #6272f9;
-  color: #fff;
-}
-.back-to-top.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  overflow: hidden;
-  background: #fff;
-}
-
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #3b4ef8;
-  border-top-color: #e2e5fe;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: animate-preloader 1s linear infinite;
-  animation: animate-preloader 1s linear infinite;
-}
-
-@-webkit-keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-/*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
@@ -105,6 +30,7 @@ h1, h2, h3, h4, h5, h6 {
     transition-delay: 0 !important;
   }
 }
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -125,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
   padding: 0;
 }
+
 .navbar ul {
   margin: 0;
   padding: 0;
@@ -132,9 +59,11 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
   align-items: center;
 }
+
 .navbar li {
   position: relative;
 }
+
 .navbar a, .navbar a:focus {
   display: flex;
   align-items: center;
@@ -147,14 +76,17 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   transition: 0.3s;
 }
+
 .navbar a i, .navbar a:focus i {
   font-size: 12px;
   line-height: 0;
   margin-left: 5px;
 }
+
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
   color: #3b4ef8;
 }
+
 .navbar .getstarted, .navbar .getstarted:focus {
   background: #e2e5fe;
   padding: 9px 25px;
@@ -164,9 +96,71 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   color: #3b4ef8;
 }
+
 .navbar .getstarted:hover, .navbar .getstarted:focus:hover {
   color: #fff;
   background: #3b4ef8;
+}
+
+ 
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+           
+  .navbar {
+      padding: 0;
+  }
+
+  .navbar ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      align-items: center;
+      padding-right: 300px;
+  }
+
+  .navbar li {
+      position: relative;
+  }
+
+  .navbar a, .navbar a:focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 10px 30px;
+      font-family: "Krub", sans-serif;
+      font-size: 2vw;
+      font-weight: 600;
+      color: #2d405f;
+      white-space: nowrap;
+      transition: 0.3s;
+  }
+
+  .navbar a i, .navbar a:focus i {
+      font-size: 12vw;
+      line-height: 0;
+      margin-left: 5px;
+  }
+
+  .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+      color: #3b4ef8;
+  }
+
+  .navbar .getstarted, .navbar .getstarted:focus {
+      background: #e2e5fe;
+      padding: 9px 25px;
+      margin-left: 30px;
+      border-radius: 5px;
+      font-weight: 600;
+      color: #fff;
+      color: #3b4ef8;
+  }
+
+  .navbar .getstarted:hover, .navbar .getstarted:focus:hover {
+      color: #fff;
+      background: #3b4ef8;
+  }
+
 }
 
 /*--------------------------------------------------------------
@@ -177,11 +171,13 @@ h1, h2, h3, h4, h5, h6 {
   height: 80vh;
   padding-top: 150px;
 }
+
 .boxes {
   padding-top:40px;
   padding-bottom: 100px;
   text-align: center;
 }
+
 #left {
   left:20%;
   position:absolute;
@@ -230,6 +226,56 @@ h1, h2, h3, h4, h5, h6 {
 #Features h4 {
   padding-top: 50px;
   text-align: center;
+}
+
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+
+  #Features {
+    background-color:yellow;
+    text-align: center;
+    height: 80vh;
+    padding-top: 100px;
+    padding-bottom: 1230px;
+    padding-right: 300px;
+    padding-left: 10px;
+  }
+  
+  #left {
+    position: relative;
+    width:280px;
+    height:260px;
+    background-color:rgba(20, 165, 223, 0.904);
+    border:rgba(20, 165, 223, 0.904);
+    margin-left: 15px;
+  }
+
+  #middle {
+    position: relative;
+    width:290px;
+    height:260px;
+    background-color:white; 
+    border:white;
+    margin: 15px;
+  }
+  
+  #right {
+    position: relative;
+    width:290px;
+    height:260px;
+    background-color: rgb(179, 240, 13); 
+    border: rgb(179, 240, 13);
+    margin: 15px;
+  }
+  
+  #Features h2 {
+    font-size: 7.5vw;
+    font-weight: 700;
+    line-height: 56px;
+    color: #2d405f;
+    text-align: center;
+    padding-left: 130px;
+  }
 }
 
 
@@ -316,7 +362,7 @@ section {
   padding-bottom: 30px;
 }
 .section-title h2 {
-  font-size: 32px;
+  font-size: 1.7vw; /*responsive design so using vh*/
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -337,15 +383,37 @@ section {
   margin-bottom: 0;
 }
 
+
+/*--------------------------------------------------------------
+# chat with chatbot section
+--------------------------------------------------------------*/
+#chatChatbot {
+  height: 120px;
+  text-align: center;
+  background-color: #0fc8e0;
+  padding-bottom: 130px;
+  padding-top: 80px;
+}
+
+#chatChatbot button{
+  height: 80px;
+  width: 360px;
+  background-color: greenyellow;
+}
+
+#chatChatbot h2{
+  color: white; 
+}
+
 /*--------------------------------------------------------------
 # Quotes Section
 --------------------------------------------------------------*/
-
 #Quotes {
   background-color:yellow;
   border-bottom: 2px solid white;
   height: 80vh;
-  padding-top: 300px; /*to give section between the previous space and this section*/
+  padding-top: 5px; /*to give section between the previous space and this section*/
+
 }
 
 .generalQuotesBox{
@@ -364,7 +432,7 @@ section {
 /* Slides */
 .mySlides {
   padding: 80px;
-  font-size: 50px;
+  font-size: 2.7vw;
   text-align: center;
 }
 
@@ -378,7 +446,7 @@ section {
   padding: 16px;
   color: #888;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2.7vw;
   border-radius: 0 3px 3px 0;
   user-select: none;
 }
@@ -400,12 +468,72 @@ section {
   color: rgb(214, 195, 21);
 }
 
+
+
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+        
+  #Quotes {
+      background-color:yellow;
+      height: 80vh;
+      padding-top: 400px; /*to give section between the previous space and this section*/
+  }
+  
+  .generalQuotesBox{
+      width: 85vmin;
+      height: 400px;
+      position: absolute;
+      transform: translate(-50%,-50%); /*to make it in the middle of the page*/
+      left: 50%;
+      overflow: hidden;
+      border: 10px solid #ffffff;
+      border-radius: 8px;
+      box-shadow: 10px 25px 30px rgba(0,0,0,0.3);
+      background: #f1f1f1f1;
+  }
+  
+  /* Slides */
+  .mySlides {
+      padding: 80px;
+      font-size: 4.7vw;
+      text-align: center;
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -30px;
+      padding: 16px;
+      color: #888;
+      font-weight: bold;
+      font-size: 2.7vw;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+      position: absolute;
+      right: 0;
+      border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+  }
+  
+}
+
 /*--------------------------------------------------------------
 # About Me - the developer
 --------------------------------------------------------------*/
 .team {
   background: #0fc8e0;
-  padding: 60px 0;
 }
 
 .team .member {
@@ -439,14 +567,14 @@ section {
 .team .member .member-info-content h4 {
   font-weight: 700;
   margin-bottom: 2px;
-  font-size: 18px;
+  font-size: 1vw;
   color: #fff;
 }
 
 .team .member .member-info-content span {
   font-style: italic;
   display: block;
-  font-size: 13px;
+  font-size: 1vw;;
   color: #fff;
 }
 
@@ -473,7 +601,7 @@ section {
 }
 
 .team .member .social i {
-  font-size: 18px;
+  font-size: 1vw;
   margin: 0 2px;
 }
 
@@ -494,22 +622,117 @@ section {
   transition: bottom ease-in-out 0.4s;
 }
 
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+
+  .team .member {
+    text-align: center;
+    margin-bottom: 20px;
+    background: #343a40;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    left: calc(150% - 25px); /*TO GET THE IMAGE CENTERE*/
+  }
+  
+  .team .member .member-info {
+    opacity: 0;
+    position: relative;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 0.2s;
+  }
+
+  .team .member .member-info-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    transition: bottom 0.4s;
+  }
+
+  .team .member .member-info-content h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 1vw;
+    color: #fff;
+  }
+
+  .team .member .member-info-content span {
+    font-style: italic;
+    display: block;
+    font-size: 1vw;;
+    color: #fff;
+  }
+
+  /*to show the social media part*/
+  .team .member .social {
+    position: absolute;
+    left: 0;
+    bottom: -38px;
+    right: 0;
+    height: 48px;
+    transition: bottom ease-in-out 0.4s;
+    text-align: center;
+  }
+
+  .team .member .social a {
+    transition: color 0.3s;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  .team .member .social a:hover {
+    color: #fff;
+  }
+
+  .team .member .social i {
+    font-size: 1vw;
+    margin: 0 2px;
+  }
+
+  .team .member:hover .member-info {
+    background: linear-gradient(0deg, rgba(12, 17, 26, 0.9) 0%, rgba(20, 29, 43, 0.8) 20%, rgba(0, 212, 255, 0) 100%);
+    opacity: 1;
+    transition: 0.4s;
+  }
+
+  .team .member:hover .member-info-content {
+    bottom: 60px;
+    transition: bottom 0.4s;
+    transition: bottom 0.4s;
+  }
+
+  .team .member:hover .social {
+    bottom: 0;
+    transition: bottom ease-in-out 0.4s;
+  }
+
+  .team  h2{
+    font-size: 7vw;
+  }
+}
+
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
 .contact{
   background: yellow;
+  padding: 45px;
 }
 
 .contact .info-box {
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 20px 0 30px 0;
-  background: rgb(238, 238, 238);
+  background: greenyellow;
 }
 
 .contact .info-box i {
-  font-size: 32px;
+  font-size: 4vw;
   color: #3b4ef8;
   padding: 8px;
 }
@@ -517,8 +740,35 @@ section {
 .contact .info-box p {
   padding: 0;
   line-height: 24px;
-  font-size: 14px;
+  font-size: 1vw;
   margin-bottom: 0;
+}
+
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+  .contact .info-box {
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+    padding: 20px 0 30px 0;
+    background: greenyellow;
+    width: 290px;
+    text-align: center;
+  }
+
+  .contact .info-box i {
+    font-size: 5vw;
+    color: #3b4ef8;
+  }
+
+  .contact h2{
+    font-size: 7vw;
+  }
+
+  .contact .info-box p {
+    padding: 0;
+    line-height: 24px;
+    font-size: 2.6vw; /*size of the email text*/
+    margin-bottom: 0;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -527,7 +777,20 @@ section {
 #footer {
   margin-top:100px;
   color: #444444;
-  font-size: 14px;
+  font-size: 1vw;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   background: rgb(197, 195, 49);
+}
+
+
+/*to make it on responsives on screens with max-width 600px*/
+@media screen and (max-width: 600px) {
+  #footer {
+      margin-top:100px;
+      color: #444444;
+      font-size: 2vw;
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      background: rgb(197, 195, 49);
+      width:600px;
+  }
 }
