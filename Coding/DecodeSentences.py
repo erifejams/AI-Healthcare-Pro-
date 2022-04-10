@@ -62,7 +62,8 @@ def preprocessing(inputs):
     return inputs
 
 def messange_to_bot(sentences):
-    sentence = ''
+    sentence = " "
+    ij = 0
     word = preprocessing([sentences])
     continued = True
     while continued:
@@ -73,35 +74,24 @@ def messange_to_bot(sentences):
             continued = False
             break
 
-        if predict > 0:
-            for i in training['Question']:
+        for i in tm.AT:
+            if sentences == i:
                 #to check if the question asked by the user is in the file, if so, then prints the answer
-                if i ==  sentences:
-                    sentence = i
-            #sentence += tm.answer_index_word[predict]
-                    continued = False
-   
+                sentence = tm.AA[ij-1]
+                continued = False
+                break
+            else:
+                ij = ij + 1
+                continued = True
     return sentence
 
-    """
-        if predict != 0:
-            print(predict.length())
-            for i in tm.question_index_word:
-                if predict == i:
-                    sentence += tm.question_index_word[predict]
-                    continued = False
-                else:
-                    continued = False
-                    #sentence += tm.question_index_word[predict]
-    return sentence
-    """
+
+#text = "I'm feeling gloomy"
+#print(messange_to_bot(text))
 
 
-text = "i'm a libra"
-print(messange_to_bot(text))
-
-"""
 def talk_with_bot():
+    #print('InTa : Hi, my name is InTa, you can just say bye when you want to stop talking to me')
     while True:
         text = input('You : ')
         if text == 'quit':
@@ -109,4 +99,3 @@ def talk_with_bot():
         print('InTa :', messange_to_bot(text))
 
 talk_with_bot()
-"""

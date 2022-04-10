@@ -97,9 +97,7 @@ X_train, X_test, y_train, y_test = train_test_split(question_padded, answer_padd
 #print(y_train.shape)
 #(5392, 585)
 #print(y_test.shape)
-from pythainlp.tokenize import word_tokenize
-from pythainlp.util import normalize
-from pythainlp.spell import correct
+
 
 AA = []
 for i in training['Answer']:
@@ -125,26 +123,19 @@ for i in training['Question']:
   AT.append(i)
 
 
-continued = 17973
+
 ij = 0
 sentence = " "
 #remember to put the square bracket around
-sentences = " hey there"
+sentences = "I'm feeling gloomy"
 """
-sentences = normalize(sentences)
-print(sentences)
-sentences = correct(sentences)
-print(sentences)
-"""
-
-for i in training['Question']:
+for i in AT:
   if sentences == i:
-    ij = ij + 1
     sentence = AA[ij-1]
     print(sentence)
     break
   else:
     ij = ij + 1
     continue
-        
+"""
       
