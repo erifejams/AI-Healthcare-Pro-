@@ -7,6 +7,7 @@
     #Lemmatization
 
 
+import pandas as pd
 import ReadingDataFiles as dataFiles
 import nltk
 from nltk.stem import WordNetLemmatizer 
@@ -53,15 +54,16 @@ dataFiles.concate_data['CleanQuestion']= dataFiles.concate_data['Question'].appl
 dataFiles.concate_data['CleanAnswer']= dataFiles.concate_data['Answer'].apply(lambda x:remove_punctuation_tokenize(str(x)))
 
 #storing the pos tags
-dataFiles.concate_data['tagginQuestion']= dataFiles.concate_data['CleanQuestion'].apply(lambda x:pos_tagging(x))
-dataFiles.concate_data['tagginAnswer']= dataFiles.concate_data['CleanAnswer'].apply(lambda x:pos_tagging(x))
+#dataFiles.concate_data['tagginQuestion']= dataFiles.concate_data['CleanQuestion'].apply(lambda x:pos_tagging(x))
+#dataFiles.concate_data['tagginAnswer']= dataFiles.concate_data['CleanAnswer'].apply(lambda x:pos_tagging(x))
 
 #storing the Lemmatization
-dataFiles.concate_data['AnswerLemmatized']= dataFiles.concate_data['tagginAnswer'].apply(lambda x:lemmatizer(str(x)))
-dataFiles.concate_data['QuestionLemmatized']= dataFiles.concate_data['tagginQuestion'].apply(lambda x:lemmatizer(str(x)))
-#REMOVING COLUMNS NOT NEEDED AGAIN
-dataFiles.concate_data.drop(['Question', 'Answer' ,'CleanQuestion', 'CleanAnswer', 'tagginQuestion', 'tagginAnswer'], axis = 1, inplace = True)
+dataFiles.concate_data['AnswerLemmatized']= dataFiles.concate_data['CleanQuestion'].apply(lambda x:lemmatizer(str(x)))
+dataFiles.concate_data['QuestionLemmatized']= dataFiles.concate_data['CleanAnswer'].apply(lambda x:lemmatizer(str(x)))
 
+#REMOVING COLUMNS NOT NEEDED AGAIN
+#dataFiles.concate_data.drop(['Question', 'Answer' ,'CleanQuestion', 'CleanAnswer', 'tagginQuestion', 'tagginAnswer'], axis = 1, inplace = True)
+dataFiles.concate_data.drop(['AnswerLemmatized', 'QuestionLemmatized' ,'CleanQuestion', 'CleanAnswer'], axis = 1, inplace = True)
 
 #CHANGE THE NAME OF THE COLUMNS 
 dataFiles.concate_data.rename(columns={"QuestionLemmatized": "Question"}, inplace=True)

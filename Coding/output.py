@@ -25,7 +25,7 @@ def clean_up(sentence):
 
 
 #loading the modal
-chatbotmodal = load_model('./chatbot_model.h5', compile = True)
+chatbotmodal = load_model('./models/chatbot_model.h5', compile = True)
 #firstline 
 print("InTa:  Hi!!!, my name is Inta, nice to meet you!!!")
 
@@ -57,8 +57,8 @@ while True:
             output = label_enc.predict(np.array([prediction_input]))[0]
             print(output)
             #to get the highest posibility
-            #output_index = np.argmax(output[0, -1, :])
-            #print(tm.training[int(output[0][0])])
+            output_index = np.argmax(output[0, -1, :])
+            print(tm.training[int(output[0][0])])
 
             """
             if output[output_index] > 0.70:
