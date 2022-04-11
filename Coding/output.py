@@ -25,7 +25,7 @@ def clean_up(sentence):
 
 
 #loading the modal
-chatbotmodal = load_model('./models/chatbot_model.h5', compile = True)
+chatbotmodal = load_model('./models/binaryChatbot_model4.h5', compile = True)
 #firstline 
 print("InTa:  Hi!!!, my name is Inta, nice to meet you!!!")
 
@@ -43,22 +43,19 @@ while True:
             tokenizer = Tokenizer()
             tokenizer.fit_on_texts(prediction_input)
             prediction_input = tokenizer.texts_to_sequences(prediction_input)
-            prediction_input = pad_sequences(prediction_input, padding='post')
-            prediction_input = np.array(prediction_input).reshape(-1,1)
+            prediction_input = pad_sequences(prediction_input, maxlen =585, padding='post')
+            mms = preprocessing.MinMaxScaler()
+            prediction_input = mms.fit_transform(prediction_input)
+            prediction_input = prediction_input.reshape(1755,-1)
             print(str(prediction_input))
-
-            label_enc = preprocessing.LabelEncoder()
-            #FIT MODEL
-            label_enc.fit(chatbotmodal)
 
 
             #PREDICTING THE RESPONSE
             #output = label_enc.predict([prediction_input])[0]
-            output = label_enc.predict(np.array([prediction_input]))[0]
+            output = chatbotmodal.predict([prediction_input])[0]
             print(output)
             #to get the highest posibility
-            output_index = np.argmax(output[0, -1, :])
-            print(tm.training[int(output[0][0])])
+            output_index = np.argmax(output[0])
 
             """
             if output[output_index] > 0.70:
@@ -68,37 +65,6 @@ while True:
             else:
                 print("I don’t fully understand")
 
-
-            def chat_with_bot():
-            checkpoint = './checkpoint.ckpt'
-            session = tf.InteractiveSession()
-            session.run(tf.global_variables_initializer())
-            saver = tf.train.Saver()
-            saver.restore(session, checkpoint)
-            while True:
-            question = input("You: ")
-            if(question == 'Goodbye'):
-                break
-            else:
-                question = convert_string2int(question, questionswords2int)
-                question = question + [questionswords2int['<PAD>']] * (20 - len(question))
-                fake_batch = np.zeros((batch_size, 20))
-                fake_batch[0] = question
-                predicted_answer = session.run(test_predictions, {input: fake_batch, keep_prob: 0.5})[0]
-                answer = ''
-                for i in np.argmax(predicted_answer, 1):
-                    if answersints2word[i] == 'i':
-                        token = 'I'
-                    elif answersints2word[i] == '<EOS>':
-                        token = '.'
-                    elif answersints2word[i] == '<OUT>':
-                        token = 'out'
-                    else:
-                        token = ' ' + answersints2word[i]
-                    answer += token
-                    if token == '.':
-                        break
-                print('Chatbot:', answer)
             """
 
             #IF THERE IS NO PREDICTION THAT IT CAN COME UP WITH 

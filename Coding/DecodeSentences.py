@@ -1,11 +1,11 @@
 
+#pip install pythainlp
 
 import numpy as np
 import pandas as pd
 import TrainingModel as tm
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
-import pythainlp
 from pythainlp.tokenize import word_tokenize
 from pythainlp.spell import correct
 from pythainlp.util import normalize
@@ -86,7 +86,7 @@ def messange_to_bot(sentences):
     return sentence
 
 
-#text = "I'm feeling gloomy"
+#text = "Your joke was awful"
 #print(messange_to_bot(text))
 
 

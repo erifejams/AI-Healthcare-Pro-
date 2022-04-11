@@ -105,7 +105,7 @@ dataFiles.concate_data['ExtendedFormAnswer']= dataFiles.concate_data['CleanAnswe
 
 #storing the puntuation and tokenized text 
 dataFiles.concate_data['PuncTokenQuestion']= dataFiles.concate_data['ExtendedFormQuestion'].apply(lambda x:remove_punctuation_tokenize(str(x))) #i put str(x), cause it expects it back as a string unless it gives an error
-dataFiles.concate_data['PuncTokenAnswer']= dataFiles.concate_data['ExtendedFormQuestion'].apply(lambda x:remove_punctuation_tokenize(str(x)))
+dataFiles.concate_data['PuncTokenAnswer']= dataFiles.concate_data['ExtendedFormAnswer'].apply(lambda x:remove_punctuation_tokenize(str(x)))
 
 
 #storing the Lemmatization
