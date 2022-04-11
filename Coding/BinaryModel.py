@@ -48,8 +48,6 @@ plt.plot(chatbotModel.history['loss'], label = 'training set loss')
 plt.show()
 plot_model(model(), show_shapes=True)
 print("chatbot model shown")
-plt.savefig('graphs/modelLossVsAccuracy')
-print("chatbot model saved")
 
 #accuracy vs validation accuracy
 plt.plot(chatbotModel.history['accuracy'])
