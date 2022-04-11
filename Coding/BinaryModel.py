@@ -42,7 +42,7 @@ model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy
 chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=300, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
 
 #saving the model 
-model.save('models/binaryChatbot_model4.h5', chatbotModel)
+model.save('models/binaryChatbot_model5.h5', chatbotModel)
 print("model created")
 
 #this is to make a graph from the accuracy and loss of the chatbot model made
@@ -51,8 +51,7 @@ plt.plot(chatbotModel.history['loss'], label = 'training set loss')
 plt.show()
 plot_model(model(), show_shapes=True)
 print("chatbot model shown")
-plt.savefig('graphs/modelLossVsAccuracy')
-print("chatbot model saved")
+
 
 #accuracy vs validation accuracy
 plt.plot(chatbotModel.history['accuracy'])
@@ -62,7 +61,7 @@ plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.show()
 plot_model(model(), show_shapes=True)
-plt.savefig('graphs/modelAccuracy')
+
 
 #loss vs validation loss
 plt.plot(chatbotModel.history['loss'])
@@ -72,4 +71,3 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.show()
 plot_model(model(), show_shapes=True)
-plt.savefig('graphs/model loss')

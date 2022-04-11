@@ -16,10 +16,16 @@ from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
+import nltk
+
+from pythainlp.tokenize import word_tokenize
+from pythainlp.util import normalize
+from pythainlp.spell import correct
+
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
 training = training.dropna()
-#print(training['Answer'][3])
+
 # this converts into a list
 question_list = training['Question'].to_list()
 answer_list =training['Answer'].to_list()
@@ -76,15 +82,15 @@ for i in range(len(answer_encoded)):
 #to make sure all the sequences have the same length, if not zero is added unto the end
 question_padded = pad_sequences(question_encoded, maxlen = 3120, padding='post')
 answer_padded = pad_sequences(answer_encoded, maxlen =  585, padding='post')
+print(question_padded[5])
 
-#print(question_padded)
-#print(answer_padded)
-"""
+
 #neural network is best in range 0-1, so min-max is better to user
+#to scale data
 mms = MinMaxScaler()
 question_padded = mms.fit_transform(question_padded)
 answer_padded = mms.fit_transform(answer_padded)
-"""
+#print(question_padded[5])
 
 # Split data into train and test set, 70-30 split ratio
 X_train, X_test, y_train, y_test = train_test_split(question_padded, answer_padded, test_size=0.3, random_state=1)
@@ -108,6 +114,8 @@ for i in training['Answer']:
   i =re.sub(r'-', '', i)
   i =re.sub(r'/', '', i)  
   i =re.sub(r'/', '', i)
+  i = re.sub(r',', '', i)
+  i= re.sub(r"' '", ' ', i) 
   AA.append(i)
 
 
@@ -120,6 +128,8 @@ for i in training['Question']:
   i =re.sub(r'-', '', i)
   i =re.sub(r'/', '', i)  
   i =re.sub(r'/', '', i)
+  i = re.sub(r',', '', i)
+  i= re.sub(r"' '", ' ', i) 
   AT.append(i)
 
 
@@ -127,15 +137,29 @@ for i in training['Question']:
 ij = 0
 sentence = " "
 #remember to put the square bracket around
-sentences = "I'm feeling gloomy"
+#sentences = "['I'm feeling gloomy']"
+#sentences = "['Hi']"
+sentences = "['i am a libra']"
+
 """
+sentences = normalize(sentences)
+print(sentences)
+sentences = correct(sentences)
+punctuationfree = nltk.RegexpTokenizer(r"\w+")
+#tokenizes sentence - splits it into smaller parts
+sentences = punctuationfree.tokenize(sentences)
+print(sentences)
+"""
+
+
 for i in AT:
   if sentences == i:
-    sentence = AA[ij-1]
+    sentence = AA[ij]
+    print(ij)
     print(sentence)
     break
   else:
     ij = ij + 1
     continue
-"""
+
       
