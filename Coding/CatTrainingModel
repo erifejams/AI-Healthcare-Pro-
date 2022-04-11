@@ -13,95 +13,75 @@ import pandas as pd
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler, OneHotEncoder, OrdinalEncoder, StandardScaler
 from keras.utils.np_utils import to_categorical
+
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.utils.vis_utils import plot_model
+from matplotlib import pyplot as plt #to plot the graph
+from keras.optimizers import gradient_descent_v2
+
 
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
+#split data into answer and reponse
+question_input2 = training['Question']
+#answer_output = training.Answer
 
-#print(training['Answer'])
-# this converts into a list
-question_list = training.Question.to_list()
-answer_list = training.Answer.to_list()
+#question_input = training['Question'].to_list()
+#answer_output =training['Answer'].to_list()
 
-#this turns the words into numbers input, so that it can be used for training the model
-#input was taken as list
-def tokenize_sent(text):
+# format all fields as string
 
-  tokenizer = Tokenizer()
-  tokenizer.fit_on_texts(text)
-
-  #returning the tokenizer and enocoded text
-  #helps to convert text to sequence of integers(texts_to_sequences)
-  return tokenizer, tokenizer.texts_to_sequences(text)
+#question_input =  question_input.values.reshape(-1,1)
+#question_input = question_input.astype(str)
+#extracts a numpy array with the values of your pandas Series object and then reshapes it to a 2D array - was given 1d from data before changed to 2d
+#answer_output =  answer_output.values.reshape(-1,1)
+#answer_output = answer_output.values.reshape((len(answer_output), 1))
 
 
-# Tokenize question and answer sentences
-question_tokenizer, question_encoded = tokenize_sent(text = training.Question)
-answer_tokenizer, answer_encoded = tokenize_sent(text = training.Answer)
+# Convert target label to numerical Data
+le = LabelEncoder()
+question_input  = le.fit_transform( training['Question'])
+answer_output = le.fit_transform(training['Answer'])
 
-# question Word --> index dictionary
-question_index_word = question_tokenizer.index_word
+#question_input = question_input.str.replace(',', '')
+#question_input = question_input.str.replace("' '", ' ')
+#neural network is best in range 0-1, so min-max is better to user
+#scaling data
+mms = MinMaxScaler()
+question_padded = mms.fit_transform(question_input.reshape(len(question_input), 1))
+answer_padded = mms.fit_transform(answer_output.reshape(len(answer_output), 1))
+print(answer_padded[3])
 
-# question Index --> word dictionary
-question_word_index = question_tokenizer.word_index
-#print(question_word_index)
-
-# size of question vocabulary for encoder input
-# For zero padding we have to add +1 in size
-QUESTION_VOCAB_SIZE = len(question_tokenizer.word_counts)+1 #18976
-
-# answer Word --> index dict
-answer_word_index= answer_tokenizer.word_index 
-#answer vocab size for decoder output
-ANSWER_VOCAB_SIZE = len(answer_tokenizer.word_counts)+1 #22201
-
-# Getting max length of question and answer sentences
-max_question_len = 0
-for i in range(len(question_encoded)):
-  if len(question_encoded[i]) > max_question_len:
-    max_question_len = len(question_encoded[i])
-#print(max_question_len) #3120
+# split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(question_input, answer_output, test_size=0.33, random_state=1)
 
 
-max_answer_len = 0
-for i in range(len(answer_encoded)):
-  if len(question_encoded[i]) > max_answer_len:
-    max_answer_len= len(answer_encoded[i])
-#print(max_answer_len) #585
-t_train = []
+# make output 3d
+#y_train_enc = y_train_enc.values.reshape((len(y_train_enc), 1, 1))
+#y_test_enc = y_test_enc.values.reshape((len(y_test_enc), 1, 1))
 
-for i in range(len(training.Answer)-1):
-    t_train.append(to_categorical(training.Answer[i+1], num_classes=ANSWER_VOCAB_SIZE))
+# summarize
+#print('Train', X_train.shape, y_train.shape) #Train (12041,) (12041, 1)
+#print('Test', X_test.shape, y_test.shape) #Test (5932,) (5932, 1)
 
+#import classifier algorithm here
+from sklearn.linear_model import LogisticRegression
 
-t_train.append(to_categorical(0, num_classes=ANSWER_VOCAB_SIZE))
-t_train = np.array(t_train)
-print(t_train)
-#print(question_padded)
-# encode class values as integers
-encoder = LabelEncoder()
-question_encoded = encoder.fit_transform(question_encoded)
-answer_encoded = encoder.fit_transform(answer_encoded)
+# create classifier
+lg_model = LogisticRegression()
 
-# convert integers to dummy variables (i.e. one hot encoded)
-question_padded = to_categorical(question_encoded)
-answer_padded = to_categorical(answer_encoded)
+#Training the classifier
+lg_model.fit(X_train.reshape(-1, 1),y_train)
 
-# this pads the question and the response
-#to make sure all the sequences have the same length, if not zero is added unto the end
-question_padded = pad_sequences(question_encoded, maxlen = 3120, padding='post')
-answer_padded = pad_sequences(answer_encoded, maxlen =  585, padding='post')
+# import evaluation metrics
+from sklearn.metrics import confusion_matrix, accuracy_score
 
-# Split data into train and test set, 70-30 split ratio
-X_train, X_test, y_train, y_test = train_test_split(question_padded, answer_padded, test_size=0.3, random_state=1)
-print(len(y_train[0]))
-#(12581, 3120)
-print(X_train.shape)
-#(5392, 3120)
-#print(X_test.shape)
-#(12581, 585)
-#print(y_train.shape)
-#(5392, 585)
-#print(y_test.shape)
+# evaluate the model
+y_pred = lg_model.predict(X_test)
+print(y_pred)
 
+# Get the accuracy
+print("Accuracy Score of Logistic Regression classifier: ","{:.4f}".format(accuracy_score(y_test, y_pred)))
