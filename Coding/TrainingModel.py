@@ -133,7 +133,6 @@ for i in training['Question']:
   AT.append(i)
 
 
-
 ij = 0
 sentence = " "
 #remember to put the square bracket around
@@ -150,7 +149,6 @@ punctuationfree = nltk.RegexpTokenizer(r"\w+")
 sentences = punctuationfree.tokenize(sentences)
 print(sentences)
 """
-
 
 for i in AT:
   if sentences == i:

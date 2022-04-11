@@ -1,8 +1,5 @@
 #CREATING A MODEL USING NEURAL NETWORK (FRAMEWORK )
 
-###### SOURCE WHERE I AM GETTING THE CODE HELP FROM 
-#https://data-flair.training/blogs/python-chatbot-project/
-
 import os
 import pandas as pd
 
@@ -39,7 +36,7 @@ model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy
 #fitting the model
 #chatbotModel = model.fit(np.array(X_train), np.array(y_train), epochs=200, batch_size = 8, validation_data=(tm.X_test, tm.y_test), verbose=1)
 #to make it go process faster, it it turned into a numpy array
-chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=300, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
+chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=10, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
 
 #saving the model 
 model.save('models/binaryChatbot_model5.h5', chatbotModel)
@@ -51,7 +48,6 @@ plt.plot(chatbotModel.history['loss'], label = 'training set loss')
 plt.show()
 plot_model(model(), show_shapes=True)
 print("chatbot model shown")
-
 
 #accuracy vs validation accuracy
 plt.plot(chatbotModel.history['accuracy'])

@@ -25,7 +25,6 @@ from keras.optimizers import gradient_descent_v2
 
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
-
 #split data into answer and reponse
 question_input2 = training['Question']
 #answer_output = training.Answer
