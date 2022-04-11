@@ -68,4 +68,3 @@ concate_data.dropna(axis=1)
 concate_data.reset_index(drop=True, inplace=True)
 ##giving the column index as ID
 concate_data.index.name = "ID"
-#print(concate_data)

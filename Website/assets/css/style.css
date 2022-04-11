@@ -391,7 +391,7 @@ section {
   height: 120px;
   text-align: center;
   background-color: #0fc8e0;
-  padding-bottom: 130px;
+  padding-bottom: 150px;
   padding-top: 80px;
 }
 
@@ -412,8 +412,7 @@ section {
   background-color:yellow;
   border-bottom: 2px solid white;
   height: 80vh;
-  padding-top: 5px; /*to give section between the previous space and this section*/
-
+  padding-top: 370px; /*to give section between the previous space and this section*/
 }
 
 .generalQuotesBox{

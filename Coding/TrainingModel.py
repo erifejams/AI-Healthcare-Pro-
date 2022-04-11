@@ -2,6 +2,7 @@
 #Tokenizing the training data
 
 import os
+import re
 #have to include this or some libraries(in tensorflow) are not found before importing tensorflow
 #apparently this problem was only found in Python 3.9.10 not python
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
@@ -17,11 +18,11 @@ from sklearn.preprocessing import MinMaxScaler
 
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
-
-#print(training['Answer'])
+training = training.dropna()
+#print(training['Answer'][3])
 # this converts into a list
-question_list = training.Question.to_list()
-answer_list = training.Answer.to_list()
+question_list = training['Question'].to_list()
+answer_list =training['Answer'].to_list()
 
 #this turns the words into numbers input, so that it can be used for training the model
 #input was taken as list
@@ -50,6 +51,7 @@ question_word_index = question_tokenizer.word_index
 QUESTION_VOCAB_SIZE = len(question_tokenizer.word_counts)+1 #18976
 
 answer_index_word = answer_tokenizer.index_word
+print(answer_index_word[3])
 # answer Word --> index dict
 answer_word_index= answer_tokenizer.word_index 
 #answer vocab size for decoder output
@@ -77,12 +79,12 @@ answer_padded = pad_sequences(answer_encoded, maxlen =  585, padding='post')
 
 #print(question_padded)
 #print(answer_padded)
-
+"""
 #neural network is best in range 0-1, so min-max is better to user
 mms = MinMaxScaler()
 question_padded = mms.fit_transform(question_padded)
 answer_padded = mms.fit_transform(answer_padded)
-
+"""
 
 # Split data into train and test set, 70-30 split ratio
 X_train, X_test, y_train, y_test = train_test_split(question_padded, answer_padded, test_size=0.3, random_state=1)
@@ -96,3 +98,44 @@ X_train, X_test, y_train, y_test = train_test_split(question_padded, answer_padd
 #(5392, 585)
 #print(y_test.shape)
 
+
+AA = []
+for i in training['Answer']:
+  i =re.sub(r'\n', ' ', i)
+  i =re.sub('\(', '', i) 
+  i =re.sub(r'\)', '', i) 
+  i =re.sub(r',', '', i) 
+  i =re.sub(r'-', '', i)
+  i =re.sub(r'/', '', i)  
+  i =re.sub(r'/', '', i)
+  AA.append(i)
+
+
+AT = []
+for i in training['Question']:
+  i =re.sub(r'\n', ' ', i)
+  i =re.sub('\(', '', i) 
+  i =re.sub(r'\)', '', i) 
+  i =re.sub(r',', '', i) 
+  i =re.sub(r'-', '', i)
+  i =re.sub(r'/', '', i)  
+  i =re.sub(r'/', '', i)
+  AT.append(i)
+
+
+
+ij = 0
+sentence = " "
+#remember to put the square bracket around
+sentences = "I'm feeling gloomy"
+"""
+for i in AT:
+  if sentences == i:
+    sentence = AA[ij-1]
+    print(sentence)
+    break
+  else:
+    ij = ij + 1
+    continue
+"""
+      
