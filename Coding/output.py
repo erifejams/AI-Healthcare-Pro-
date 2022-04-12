@@ -25,7 +25,7 @@ def clean_up(sentence):
 
 
 #loading the modal
-chatbotmodal = load_model('./models/binaryChatbot_model4.h5', compile = True)
+chatbotmodal = load_model('./models/binaryChatbot_model5.h5', compile = True)
 #firstline 
 print("InTa:  Hi!!!, my name is Inta, nice to meet you!!!")
 
@@ -43,29 +43,24 @@ while True:
             tokenizer = Tokenizer()
             tokenizer.fit_on_texts(prediction_input)
             prediction_input = tokenizer.texts_to_sequences(prediction_input)
-            prediction_input = pad_sequences(prediction_input, maxlen =585, padding='post')
+            prediction_input = pad_sequences(prediction_input, maxlen =3120, padding='post')
             mms = preprocessing.MinMaxScaler()
             prediction_input = mms.fit_transform(prediction_input)
-            prediction_input = prediction_input.reshape(1755,-1)
-            print(str(prediction_input))
+            prediction_input = prediction_input.reshape(len(prediction_input),-1)
 
 
             #PREDICTING THE RESPONSE
             #output = label_enc.predict([prediction_input])[0]
             output = chatbotmodal.predict([prediction_input])[0]
-            print(output)
             #to get the highest posibility
             output_index = np.argmax(output[0])
-
-            """
-            if output[output_index] > 0.70:
-                #finding the right response 
-                #response_tag = label_enc.inverse_transform(output)
-                print("InTa: ", str(output))
-            else:
-                print("I don’t fully understand")
-
-            """
+            
+         
+            #finding the right response 
+            for i in tm.question_index_word:
+                if i == output:
+                    response_tag = tm.question_index_word[i]
+                    print("InTa: ", str(response_tag))
 
             #IF THERE IS NO PREDICTION THAT IT CAN COME UP WITH 
             if prediction_input == 0:
