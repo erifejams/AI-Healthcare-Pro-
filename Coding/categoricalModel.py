@@ -5,19 +5,43 @@
 
 import os
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 #have to include this or some libraries(in tensorflow) are not found before importing tensorflow
 #apparently this problem was only found in Python 3.9.10 not python
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
 os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
-import numpy as np
+
 import TrainingModel as tm
 
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
-from keras.utils.vis_utils import plot_model
 from matplotlib import pyplot as plt #to plot the graph
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+
+#THIS IS TO READ THE TRAINING DATA
+training = pd.read_csv (r'Data/trainingData.csv')
+
+# this converts into a list
+question_list = training['Question'].to_list()
+answer_list =training['Answer'].to_list()
+
+# Convert target label to numerical Data
+le = LabelEncoder()
+training2  = le.fit_transform(question_list)
+
+vocab_size = 1000
+embedding_dim = 16
+max_len = 20
+oov_token = "<OOV>"
+
+tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_token)
+tokenizer.fit_on_texts(training2)
+word_index = tokenizer.word_index
+sequences = tokenizer.texts_to_sequences(training2)
+padded_sequences = pad_sequences(sequences, truncating='post', maxlen=max_len)
 
 
 ##BUILDING A NEURAL NETWORK
@@ -49,7 +73,6 @@ print("model created")
 plt.plot(chatbotModel.history['accuracy'], label='training set accuracy')
 plt.plot(chatbotModel.history['loss'], label = 'training set loss')
 plt.show()
-plot_model(model(), show_shapes=True)
 print("chatbot model shown")
 plt.savefig('graphs/modelLossVsAccuracy')
 print("chatbot model saved")
@@ -60,8 +83,7 @@ plt.plot(chatbotModel.history['val_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
-plt.show()
-plot_model(model(), show_shapes=True)
+plt.show()  
 plt.savefig('graphs/modelAccuracy')
 
 #loss vs validation loss
@@ -71,5 +93,4 @@ plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.show()
-plot_model(model(), show_shapes=True)
 plt.savefig('graphs/model loss')

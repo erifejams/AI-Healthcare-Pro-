@@ -73,6 +73,7 @@ def ExtendText(text):
     phrase = re.sub(r"y'all", 'you all', phrase)
     phrase = re.sub(r"wouldn't", 'we will', phrase)
     phrase = re.sub(r"I'm", 'I am', phrase)
+    phrase = re.sub(r"There's", 'There is', phrase)
     return phrase
 
 #PUNCTUATION AND TOKENIZATION STEP

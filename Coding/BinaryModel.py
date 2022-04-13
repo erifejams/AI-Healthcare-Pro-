@@ -13,7 +13,6 @@ import TrainingModel as tm
 
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
-from keras.utils.vis_utils import plot_model
 from matplotlib import pyplot as plt #to plot the graph
 
 
@@ -36,18 +35,19 @@ model.compile(loss='binary_crossentropy', optimizer = 'adam', metrics=['accuracy
 #fitting the model
 #chatbotModel = model.fit(np.array(X_train), np.array(y_train), epochs=200, batch_size = 8, validation_data=(tm.X_test, tm.y_test), verbose=1)
 #to make it go process faster, it it turned into a numpy array
-chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=10, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
+chatbotModel = model.fit(tm.X_train, tm.y_train, epochs=5, batch_size = 5, validation_data=(tm.X_test, tm.y_test), verbose=1)
 
 #saving the model 
-model.save('models/binaryChatbot_model4.h5', chatbotModel)
+model.save('models/binaryChatbot_model6.h5', chatbotModel)
 print("model created")
 
 #this is to make a graph from the accuracy and loss of the chatbot model made
-plt.plot(chatbotModel.history['accuracy'], label='training set accuracy')
-plt.plot(chatbotModel.history['loss'], label = 'training set loss')
+plt.plot(chatbotModel.history['accuracy'], label='accuracy')
+plt.plot(chatbotModel.history['loss'], label = 'loss')
+plt.title('model graph')
 plt.show()
-plot_model(model(), show_shapes=True)
-print("chatbot model shown")
+plt.savefig('graphs/modelLossVsAccuracy')
+
 
 #accuracy vs validation accuracy
 plt.plot(chatbotModel.history['accuracy'])
@@ -56,8 +56,9 @@ plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.show()
-plot_model(model(), show_shapes=True)
 plt.savefig('graphs/modelAccuracy')
+
+
 
 #loss vs validation loss
 plt.plot(chatbotModel.history['loss'])
@@ -66,5 +67,4 @@ plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.show()
-plot_model(model(), show_shapes=True)
 plt.savefig('graphs/model loss')

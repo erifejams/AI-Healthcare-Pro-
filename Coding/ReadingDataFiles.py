@@ -60,7 +60,7 @@ data5['Answer'].replace("</p>",'',inplace=True, regex=True)
 
 
 #PUT ALL THE DATA TOGETHER
-concate_data = pd.concat([data, data2, data3, data4])
+concate_data = pd.concat([data2, data3, data, data4])
 #drops if it has any missing values
 concate_data.dropna(axis=1)
 
