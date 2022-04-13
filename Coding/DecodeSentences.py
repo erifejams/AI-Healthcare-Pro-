@@ -22,7 +22,7 @@ import TrainingModel as tm
 #DATABASE IMPORTS
 import sqlite3
 from textblob import TextBlob
-
+from unidecode import unidecode
 
 #loading the modal
 chatbotmodal = load_model('./models/binaryChatbot_model5.h5', compile = False)
@@ -123,11 +123,11 @@ def talk_with_bot():
     print("InTa:  Hi!!!, my name is Inta, nice to meet you!!! You can just say bye when you want to stop talking to me")
     while True:
         conversationInput = input('You : ')
-        conversationInput = conversationInput.lower()
+        conversationInput = unidecode(conversationInput.lower())
         #CHECKS THE SENTIMENT ANALYSIS OF THE SENTENCE
         analysis = TextBlob(conversationInput)
         sentiment = analysis.sentiment.polarity
-
+        #print(conversationInput, sentiment)
         #WRITE TO THE DATABASE AND INSERT INTO USER TABLE
         cursor.execute("INSERT INTO User (sentence, sentiment) VALUES ('{}', '{}')".format(conversationInput, sentiment))
         

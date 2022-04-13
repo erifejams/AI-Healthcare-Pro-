@@ -17,4 +17,5 @@ if __name__ == "__main__":
     databaseUser.commit()
     #closes the cursor for the database
     cursor.close()
+    databaseUser.close()
         

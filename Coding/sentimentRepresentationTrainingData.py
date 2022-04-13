@@ -59,5 +59,5 @@ for i in allSentences2:
         neg_count += 1
 
 #sentiment respresentation of data
-#print("Positive accuracy = {}% via {} samples".format(pos_correct/pos_count*100.0, pos_count)) #58.46231920832277%
-#print("Negative accuracy = {}% via {} samples".format(neg_correct/neg_count*100.0, neg_count)) #41.53768079167724%
+print("Positive accuracy = {}% via {} samples".format(pos_correct/pos_count*100.0, pos_count)) #58.46231920832277%
+print("Negative accuracy = {}% via {} samples".format(neg_correct/neg_count*100.0, neg_count)) #41.53768079167724%
