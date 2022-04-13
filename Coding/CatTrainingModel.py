@@ -24,7 +24,6 @@ from keras.utils.vis_utils import plot_model
 from matplotlib import pyplot as plt #to plot the graph
 
 
-
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
 #split data into answer and reponse

@@ -24,9 +24,15 @@ from pythainlp.util import normalize
 from pythainlp.spell import correct
 
 
+import nltk
+
+from pythainlp.tokenize import word_tokenize
+from pythainlp.util import normalize
+from pythainlp.spell import correct
+
+
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
-
 
 # this converts into a list
 question_list = training['Question'].to_list()
