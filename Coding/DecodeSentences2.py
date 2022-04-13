@@ -22,7 +22,7 @@ import sqlite3
 
 
 #loading the modal
-chatbotmodal = load_model('./models/binaryChatbot_model3.h5', compile = False)
+chatbotmodal = load_model('./models/binaryChatbot_model5.h5', compile = False)
 
 training = pd.read_csv (r'Data/trainingData.csv')
 
@@ -71,7 +71,8 @@ def messange_to_bot(sentences):
     continued = True
     while continued:
         #argmax identifies the maximum value in the prediction
-        predict = np.argmax(chatbotmodal.predict(word), axis=1)[0] #the 0 removes the [] around the prediction
+        predict = chatbotmodal.predict(np.array(word), batch_size=1)[0] #the 0 removes the [] around the prediction
+        predict /= len(word)
         print(predict)
         if predict == 0:
             sentence = "I don't understand, more like I'm not sure what to say to that?"

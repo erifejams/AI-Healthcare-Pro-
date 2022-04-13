@@ -46,12 +46,14 @@ while True:
             prediction_input = pad_sequences(prediction_input, maxlen =3120, padding='post')
             mms = preprocessing.MinMaxScaler()
             prediction_input = mms.fit_transform(prediction_input)
+            print(prediction_input)
             prediction_input = prediction_input.reshape(len(prediction_input),-1)
-
-
+            print(prediction_input)
             #PREDICTING THE RESPONSE
             #output = label_enc.predict([prediction_input])[0]
-            output = chatbotmodal.predict([prediction_input])[0]
+            output = chatbotmodal.predict([prediction_input], axis=1)[0]
+            print(output)
+            """
             #to get the highest posibility
             output_index = np.argmax(output[0])
             
@@ -65,8 +67,7 @@ while True:
             #IF THERE IS NO PREDICTION THAT IT CAN COME UP WITH 
             if prediction_input == 0:
                 print("InTa: I don't understand, more like I'm not sure what to say to that?")
-               
-
+            """
     if(prediction_input == "goodbye"):
         print("InTa: bye:)")
         break
