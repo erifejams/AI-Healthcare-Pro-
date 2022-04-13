@@ -1,6 +1,6 @@
+##THIS IS THE CHATBOT TALKING FILE
+#IT INCLUDES THE CODE FOR THE DATABASE, PROCESSING USER INPUT, CHATBOT CHATTING
 import os
-
-from sklearn.preprocessing import MinMaxScaler
 
 #have to include this or some libraries(in tensorflow) are not found before importing tensorflow
 #apparently this problem was only found in Python 3.9.10 not python
@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
 #pip install pythainlp
+#pip install keras
 
 import numpy as np
 import pandas as pd
@@ -18,12 +19,25 @@ from pythainlp.spell import correct
 from pythainlp.util import normalize
 import TrainingModel as tm
 
+#DATABASE IMPORTS
+import sqlite3
+from textblob import TextBlob
+
 
 #loading the modal
 chatbotmodal = load_model('./models/binaryChatbot_model5.h5', compile = False)
 
 training = pd.read_csv (r'Data/trainingData.csv')
-from keras.preprocessing.text import Tokenizer
+
+
+#creating a database
+#CREATING A DATABASE FOR USER INPUT WHILE THE USER IS WRITING THEIR SENTENCES
+databaseUser = sqlite3.connect('Database/UserTable.db')
+cursor = databaseUser.cursor()
+
+#Once table is created comment it out
+cursor.execute("""CREATE TABLE IF NOT EXISTS User (sentence TEXT, sentiment REAL)""")
+
 
 word2index = {}
 index2word = {}
@@ -36,6 +50,7 @@ def add_word(word):
         word2index[word] = current_index
         index2word[current_index] = word
 
+
 def encoder(input_sentences):
     input_sentences = input_sentences.copy()
     list_sentence = []
@@ -46,6 +61,7 @@ def encoder(input_sentences):
         inputs = np.array(inputs)
         list_sentence.append(inputs)
     return list_sentence
+
 
 def preprocessing(inputs):
     inputs = inputs.copy()
@@ -65,10 +81,11 @@ def messange_to_bot(sentences):
     ij = 0
     word = preprocessing([sentences])
     continued = True
+
     while continued:
         #argmax identifies the maximum value in the prediction
         predict = np.argmax(chatbotmodal.predict(word), axis=1)[0] #the 0 removes the [] around the prediction
-        print(predict)
+        #print(predict)
         if predict == 0:
             sentence = "I don't understand, more like I'm not sure what to say to that?"
             continued = False
@@ -87,7 +104,7 @@ def messange_to_bot(sentences):
                 else:
                     #it is 17972, cause of the amound of total sentences in training file
                     #has not yet finish going through all the sentences in training file, so it continues
-                    if ij != 17972:
+                    if ij != 17973:
                         ij = ij + 1
                         continued = True
                     else:
@@ -100,24 +117,32 @@ def messange_to_bot(sentences):
 #text = "Evening"
 #messange_to_bot(text)
 
-
 def talk_with_bot():
+
     #firstline 
     print("InTa:  Hi!!!, my name is Inta, nice to meet you!!! You can just say bye when you want to stop talking to me")
     while True:
-        text = input('You : ')
-        text = text.lower()
+        conversationInput = input('You : ')
+        conversationInput = conversationInput.lower()
+        #CHECKS THE SENTIMENT ANALYSIS OF THE SENTENCE
+        analysis = TextBlob(conversationInput)
+        sentiment = analysis.sentiment.polarity
 
-         #incase user didn't write anything
-        if text == None:
+        #WRITE TO THE DATABASE AND INSERT INTO USER TABLE
+        cursor.execute("INSERT INTO User (sentence, sentiment) VALUES ('{}', '{}')".format(conversationInput, sentiment))
+        
+
+        #incase user didn't write anything
+        if conversationInput == None:
             print("InTa : You didn't write anything. Are you ok?")
             continue
 
         #to quit
-        if text == 'bye':
+        if conversationInput == 'bye':
             break
 
-        #continues talking
-        print('InTa :', messange_to_bot(text))
-
-talk_with_bot()
+        #prints out reply from chabot
+        #print(index2word)
+        print('InTa :', messange_to_bot(conversationInput))
+            
+#talk_with_bot()

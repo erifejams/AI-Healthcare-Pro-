@@ -14,16 +14,19 @@ import pandas as pd
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+from sklearn.preprocessing import  MinMaxScaler
 
+
+import nltk
 
 from pythainlp.tokenize import word_tokenize
 from pythainlp.util import normalize
 from pythainlp.spell import correct
 
+
 #THIS IS TO READ THE TRAINING DATA
 training = pd.read_csv (r'Data/trainingData.csv')
-training = training.dropna()
+
 
 # this converts into a list
 question_list = training['Question'].to_list()
@@ -134,7 +137,6 @@ for i in training['Answer']:
   i= re.sub(r"\[", '', i) #removing the brackets around the sentence
   i= re.sub(r"\]", '', i)
   i= re.sub(r"'", '', i)
-
   AA.append(i)
 
 #to make all the words in answer lowercase
