@@ -12,7 +12,7 @@ this is conversation between patient and therapist
 this is data scraped off the internet where people talk about their problems and they get a response from real professionals.
 
 References
-1. 
+1. https://www.kaggle.com/datasets/projjal1/human-conversation-training-data
 2. https://www.kaggle.com/datasets/deniston/professional-chatbot
 3. https://www.kaggle.com/arnmaud/therapist-qa?select=Psych_data.csv
 4. https://github.com/nbertagnolli/counsel-chat/tree/master/da

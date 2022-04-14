@@ -47,7 +47,7 @@ Human 1: Sure! What does your Saturday look like?
 Human 2: Saturday looks pretty good, shall we shoot for something in the morning?
 Human 1: I am not available, sorry!
 Human 2: hey
-Human 1: is it raining pretty bad today?
+Human 1: hey, how are you?
 Human 2: yeah, can walk too far to see all the foodtruck options
 Human 1: surprising that the rain started early this year... I don't like them too much. They make days gloomy
 Human 2: yeah but I think it's good to have some rainy days in bay area, it's pretty dry here 😛
@@ -917,7 +917,7 @@ Human 1: Yes! I've been to Australia. It was very nice; I regret not going to se
 Human 2: I've always wanted to go to Australia. I'm originally from the US.
 Human 1: Ahh me too! You should definitely try to visit Australia at least once!
 Human 2: Will do! Bye.
-Human 1: goodbye!
+Human 1: Hi
 Human 2: What's your name?
 Human 1: My name is pikachu. it’s nice to meet you! What are you up to this month?
 Human 2: Nice to meet you pikachu! pikachu, pikachu, pikachu? (That meant, I'm literally catching Pokemons on my phone right now!) What're you up to lately?
