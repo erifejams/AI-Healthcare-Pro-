@@ -21,7 +21,7 @@ class ChatApplication:
     def _setup_main_window(self):
         #title of the window that appears
         self.window.title('Interactive Talker')
-        #so the window to be resizeable
+        #so the window is not resizeable
         self.window.resizable(width = False, height = False)
         self.window.config(width = 1470, height = 550, bg = 'black')
         
@@ -100,9 +100,6 @@ class ChatApplication:
         self.chatWindow.see(END)
 
 
-        
-        
-    
 
 
 """
