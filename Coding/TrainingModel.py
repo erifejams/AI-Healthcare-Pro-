@@ -17,15 +17,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import  MinMaxScaler
 
 
-import nltk
-
-from pythainlp.tokenize import word_tokenize
-from pythainlp.util import normalize
-from pythainlp.spell import correct
-
-
-import nltk
-
 from pythainlp.tokenize import word_tokenize
 from pythainlp.util import normalize
 from pythainlp.spell import correct

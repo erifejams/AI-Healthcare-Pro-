@@ -36,15 +36,11 @@ class SentimentApplication:
 
 
     def getInput(self, sentiment):
-        self.sentimentWindow.delete(0, END)
+        #self.sentimentWindow.delete(0, END)
         #gets the chatbot to talk
         sentimentResponse = f"{getSentiment(sentiment)}\n"
         ###message is inserted into the chat box
         self.sentimentWindow.insert(END, sentimentResponse)
         self.sentimentWindow.configure(state = NORMAL)
-        return
+        return sentimentResponse
 
-
-if __name__ == "__main__":
-    sentimentApp = SentimentApplication()
-    sentimentApp.run()
