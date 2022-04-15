@@ -148,23 +148,3 @@ for i in training['Answer']:
 #to make all the words in answer lowercase
 for i in range(len(AA)):
     AA[i] = AA[i].lower()
-
-"""
-ij = 0
-sentence = " "
-#remember to put the square bracket around
-#sentences = "I m feeling gloomy"
-sentences = "Evening"
-
-
-for i in AT:
-  if sentences == i:
-    sentence = AA[ij]
-    print(ij)
-    print(sentence)
-    break
-  else:
-    ij = ij + 1
-    continue
-
-"""  

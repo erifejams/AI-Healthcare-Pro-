@@ -5,6 +5,8 @@ import re
 import pandas as pd
 from textblob import TextBlob
 
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 pos_correct = 0
 pos_count = 0
 neg_correct = 0
@@ -57,7 +59,9 @@ for i in allSentences2:
         if analysis.sentiment.polarity <= 0:
             neg_correct += 1
         neg_count += 1
+    score = SentimentIntensityAnalyzer().polarity_scores(analysis.sentiment)
+    print(score)
 
 #sentiment respresentation of data
-#print("Positive accuracy = {}% via {} samples".format(pos_correct/pos_count*100.0, pos_count)) #58.46231920832277%
-#print("Negative accuracy = {}% via {} samples".format(neg_correct/neg_count*100.0, neg_count)) #41.53768079167724%
+print("Positive accuracy = {}% via {} samples".format(pos_correct/pos_count*100.0, pos_count)) #58.46231920832277%
+print("Negative accuracy = {}% via {} samples".format(neg_correct/neg_count*100.0, neg_count)) #41.53768079167724%

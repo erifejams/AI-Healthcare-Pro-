@@ -1,7 +1,6 @@
 import pandas as pd
 import yaml
 import json
-import nltk
 
 
 with open(r'Data/Original/personality/ai.yml') as file:

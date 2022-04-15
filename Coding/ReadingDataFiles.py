@@ -10,7 +10,6 @@ data = pd.read_csv('Data/Original/Psych_data.csv', encoding="ISO-8859-1")
 #putting only the column that I needed from Psych_data.csv
 data = data[['Answer', 'Question']]
 
-
 #human_chat.txt
 #then find the word e.g human 1 and put it under a 2 separate columns e.g Question and answer
 firstConv = []
@@ -27,7 +26,7 @@ with open('Data/Original/human_chat.txt', encoding="utf8") as file:
         #ANSWER KINDA SENTENCES
         if "Human 1" in i:
             secondConv.append(i)
-            
+
 
 data2 = pd.DataFrame(firstConv , columns = ['Question'])
 #BECAUSE THE LENGTH OF VALUES DIDN'T MATCH(ONE WAS MORE THAN THE OTHER), SO USING SERIES NULL WAS FILLED IN

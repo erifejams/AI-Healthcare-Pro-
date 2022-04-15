@@ -2,6 +2,8 @@
 #IT INCLUDES THE CODE FOR THE DATABASE, PROCESSING USER INPUT, CHATBOT CHATTING
 import os
 
+from sklearn.preprocessing import MinMaxScaler
+
 #have to include this or some libraries(in tensorflow) are not found before importing tensorflow
 #apparently this problem was only found in Python 3.9.10 not python
 #MAKE SURE TO ALWAYS INCLUDE IN THE FILE **IMPORTANT
@@ -22,12 +24,10 @@ import TrainingModel as tm
 #DATABASE IMPORTS
 import sqlite3
 from textblob import TextBlob
-
+from unidecode import unidecode
 
 #loading the modal
 chatbotmodal = load_model('./models/binaryChatbot_model5.h5', compile = False)
-
-training = pd.read_csv (r'Data/trainingData.csv')
 
 
 #creating a database
@@ -73,7 +73,9 @@ def preprocessing(inputs):
             add_word(word[j])
         inputs[i] = word
 
-    inputs = pad_sequences(encoder(inputs), maxlen=3120, padding='post') 
+    inputs = pad_sequences(encoder(inputs), maxlen=3120, padding='post')
+    mms = MinMaxScaler()
+    inputs = mms.fit_transform(inputs)    
     return inputs
 
 def messange_to_bot(sentences):
@@ -93,14 +95,27 @@ def messange_to_bot(sentences):
 
         #that means a predict exists, so its more than 0
         if predict > 0:
-            for i in tm.AT:
-                if sentences == i:
-                    #to check if the question asked by the user is in the file, if so, then prints the answer
-                    sentence = tm.AA[ij]
-                    #print(ij)
+            #to check if the question asked by the user is in the file, 
+            #to check if the answer given by the user is in the file, 
+            for i in range(len(tm.AA)):
+                questionI = tm.AT[i]
+                answerI = tm.AA[i]
+
+                if sentences == answerI: #if a response is given the question on the next line will be asked
+                    #if so, then prints the answer
+                    sentence = tm.AT[ij + 1]
+                    print(ij)
                     #print(sentence)
                     continued = False
                     break
+
+                if sentences == questionI: ## if a question is asked an answer will be given
+                    sentence = tm.AA[ij]
+                    print(ij)
+                    #print(sentence)
+                    continued = False
+                    break
+
                 else:
                     #it is 17972, cause of the amound of total sentences in training file
                     #has not yet finish going through all the sentences in training file, so it continues
@@ -110,39 +125,24 @@ def messange_to_bot(sentences):
                     else:
                         #gone through all the sentences in training file but couldn't find matching
                         sentence = "I'm not sure what to say to that?"
-                        continued = False
+                        continued = False  
+                        break            
     return sentence
 
 
-#text = "Evening"
-#messange_to_bot(text)
+chatbot_name = "InTa"
+def talk_with_bot(msg):
 
-def talk_with_bot():
+    conversationInput = unidecode(msg.lower())
+    #CHECKS THE SENTIMENT ANALYSIS OF THE SENTENCE
+    analysis = TextBlob(conversationInput)
+    sentiment = analysis.sentiment.polarity
+    #print(conversationInput, sentiment)
 
-    #firstline 
-    print("InTa:  Hi!!!, my name is Inta, nice to meet you!!! You can just say bye when you want to stop talking to me")
-    while True:
-        conversationInput = input('You : ')
-        conversationInput = conversationInput.lower()
-        #CHECKS THE SENTIMENT ANALYSIS OF THE SENTENCE
-        analysis = TextBlob(conversationInput)
-        sentiment = analysis.sentiment.polarity
+    #WRITE TO THE DATABASE AND INSERT INTO USER TABLE
+    cursor.execute("INSERT INTO User (sentence, sentiment) VALUES ('{}', '{}')".format(conversationInput, sentiment))
 
-        #WRITE TO THE DATABASE AND INSERT INTO USER TABLE
-        cursor.execute("INSERT INTO User (sentence, sentiment) VALUES ('{}', '{}')".format(conversationInput, sentiment))
-        
 
-        #incase user didn't write anything
-        if conversationInput == None:
-            print("InTa : You didn't write anything. Are you ok?")
-            continue
-
-        #to quit
-        if conversationInput == 'bye':
-            break
-
-        #prints out reply from chabot
-        #print(index2word)
-        print('InTa :', messange_to_bot(conversationInput))
-            
-#talk_with_bot()
+    #prints out reply from chabot
+    #print(index2word)
+    return messange_to_bot(conversationInput)

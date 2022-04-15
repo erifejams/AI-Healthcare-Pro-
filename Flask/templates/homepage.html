@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">    
+        <title>Interactive Talker - HomePage</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+    
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Krub:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+
+        <!-- Vendor CSS Files -->
+        <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="../static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    
+        
+        <!------------- Main CSS File -------------->
+        <link href="../static/assets/css/style.css" rel="stylesheet">   
+    </head>
+
+    <body>
+
+        <!------------- HEADER -------------->
+        <header id="header" class="fixed-top">
+            <div class="container d-flex align-items-center justify-content-between">
+                <!-- logo -->
+                <div>
+                    <a >
+                        <!-- logo: here for you -->
+                        <img src="../static/assets/img/logo.png" alt="this is the logo" width="80" height="80">
+                    </a>
+                </div>
+                <!-- /logo -->
+                
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="contactOrgansiations.html">Mental Health Organisations</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </nav><!-- .navbar -->
+            </div>
+        </header>
+
+
+
+        <!------------- Start section-------------->
+        <section id = "hero" class="d-flex align-items-center">
+            <h1>Interactive Talker</h1>
+            <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
+                <img src="../static/assets/img/hero-img.png" class="img-fluid hero-img" alt="" data-aos="zoom-in" data-aos-delay="150">
+            
+                <div class = "speech-bubble">
+                </div>
+            </div>
+        </section>
+
+        <!-------------How does Inta Help You Section-------------->
+        <section id = "Features">
+            <h2>How does InTa help you?</h2>
+            <div class = "boxes" data-aos="fade-up">
+                <div id = "left">
+                    <h4>Chat</h4>
+                    <p>
+                        Talk with InTa at your own convenience.
+                    </p>
+                </div>
+
+                <div id = "middle">
+                    <h4>Mood Evaluation</h4>
+                    <p>
+                        Interactive Talker contains a feature to analysis your mood based on your chat with the InTa.
+                    </p>
+                </div>
+
+                <div id = "right">
+                    <h4>Free Anywhere and Anytime </h4>
+                    <p>
+                        Interactive Talker is free to use and can be used along side therapy sessions. 
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-------------chat with chatbot section-------------->
+        <section id="chatChatbot">
+            <a href="smiley.html"><button type="submit">Here is something to uplift your mood</button></a>
+        </section>
+
+        <!------------- Quotes Section-------------->
+
+        <section id = "Quotes">
+            <div class="generalQuotesBox" >
+                
+                <div class="slideshow-container">
+
+                    <!-- Got the quotes from this website
+                        https://www.goodhousekeeping.com/life/g22521771/happy-quotes/?slide=30
+                     -->
+                    <div class="mySlides">
+                        <q>Every day is a new day</q>
+                        <p class="author">- Carrie Underwood</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>The most important thing is to enjoy your life - to be happy. It's all that matters</q>
+                        <p class="author">- Audrey Hepburn</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>Embrace the glorious mess that you are</q>
+                        <p class="author">- Elizabeth Gilbert</p>
+                    </div>
+                
+                    <div class="mySlides">
+                        <q>Happiness comes in waves. It'll find you again</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>Happiness is letting go of what you think life is supposed to look like.</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>When it rains, look for rainbows. When it's dark, look for stars.</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <div class="mySlides">
+                        <q>Happiness comes in waves. It'll find you again</q>
+                        <p class="author">- UNKNOWN</p>
+                    </div>
+
+                    <!-- Next/prev buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                
+                <!-- Dots/bullets/indicators -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+  
+        </section>
+
+        <!-------------Developer Info Section-------------->
+        <section id="team" class="team">
+            <div class="container" data-aos="fade-up">
+        
+                <div class="section-title">
+                    <h2>Developer</h2>
+                    <p>Details on the developer behind Interactive Talker: </p>
+                </div>
+        
+        
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member" >
+                        <img src="../static/assets/img/myPic.jpg" class="img-fluid" alt="" >
+                        <div class="member-info">
+                            <div class="member-info-content">
+                                <h4>Erifeoluwa Jamgbadi</h4>
+                                <span>Student at Technological University of Dublin - City Campus</span>
+                            </div>
+                            <div class="social">
+                                <a href="https://www.linkedin.com/in/erifeoluwa-jamgbadi-23b864173/"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+                
+
+        <!-------------CONTACT-------------->
+        <section id="contact" class="contact section-bg">
+            <div class="container" data-aos="fade-up">
+      
+                <div class="section-title">
+                    <h2>Contact</h2>
+                    <p>For more information about the development of this project or anything else.</p>
+                </div>
+      
+                <div class="info-box mt-4">
+                    <h3>Email</h3>
+                    <a href="mailto:erifeoluwa@gmail.com"><p>erifeoluwa@gmail.com</p></a>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-------------FOOTER-------------->
+        <footer id="footer">
+            <div class="container d-md-flex py-4">
+                <div class="container">
+                    <div class="copyright">
+                        &copy; Copyright <strong><span>Erifeoluwa Jamgbadi</span></strong>. All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </footer><!-- End Footer -->
+
+        <!-- Vendor JS Files -->
+        <!--allows some of the content to show up on the page because of the settings-->
+        <script src="../static/assets/vendor/aos/aos.js"></script>
+        <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="../static/assets/js/main.js"></script>
+        <script src="../static/assets/js/quotesSlideshowHomepage.js"></script> <!--for the quotes slideshow--->
+        
+
+    </body>
+</html>
