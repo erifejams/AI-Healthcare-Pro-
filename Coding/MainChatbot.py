@@ -5,10 +5,11 @@
 from SentimentAnalyzerGUI import SentimentApplication
 from DecodeSentences import databaseUser
 from ChatbotGUI import ChatApplication
-        
+from Flask.templates.app import *
 #main
 if __name__ == "__main__":
     #gets the interface to show up and the chatbot to talk
+    appli.run(debug= True)
     app = ChatApplication()
     sentimentApp = SentimentApplication()
     app.run()

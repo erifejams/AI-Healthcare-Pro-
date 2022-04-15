@@ -33,6 +33,7 @@ class ChatApplication:
         line = Label(self.window, width = 450, bg = 'white')
         line.place(relwidth = 1, rely = 0.07, relheight = 0.012)
 
+
         #this is the chat area
         self.chatWindow = Text(self.window, bd = 1, bg = 'orange', width = 1200, height = 600, fg = 'black', padx = 0, pady = 0)
         self.chatWindow.place(relheight = 0.8, relwidth = 1, rely = 0.08) #the entire width of the page is used
@@ -42,11 +43,6 @@ class ChatApplication:
         
         #firstText =  Label(self.chatWindow, bg = 'white', fg = 'black', text = "InTa: Hi!!!, my name is Inta, nice to meet you!!! You can just say bye when you want to stop talking to me",  pady = 5)
         #firstText.place(relwidth = 1)
-
-        #scrollbar would be able to go down according to the dragging/moving of the text
-        scrollbar = Scrollbar(self.chatWindow)
-        scrollbar.place(relheight = 1, relx = 0.99)
-        scrollbar.configure(command = self.chatWindow.yview)
 
         #background for the bottom part
         bottom_label = Label(self.window, bg = 'black', height = 80)
@@ -64,6 +60,10 @@ class ChatApplication:
         self.Button = Button(bottom_label, text = 'Send', bg = 'grey', activebackground = 'light blue', width = 10, height = 5, font= ('Arial', 20), command = lambda: self._on_enter_pressed(None))
         self.Button.place(relx = 0.77, rely = 0.008, relheight = 0.06, relwidth = 0.22)
 
+        #scrollbar would be able to go down according to the dragging/moving of the text
+        scrollbar = Scrollbar(self.chatWindow, orient = 'horizontal')
+        scrollbar.place(relheight = 1, relx = 0.99)
+        scrollbar.configure(command = self.chatWindow.yview)
        
     #message is inserted in the chat area when enter is pressed
     def _on_enter_pressed(self, event):
@@ -98,7 +98,6 @@ class ChatApplication:
 
         #Lets you see the last message that is in chat box
         self.chatWindow.see(END)
-
 
 
 

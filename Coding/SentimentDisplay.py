@@ -17,6 +17,7 @@ def getSentiment(dataDent):
     #1000/2
     dataFromDatabase['smootedSentiment'] = dataFromDatabase['sentiment'].rolling(int(len(dataFromDatabase)/2)).mean()
     dataFromDatabase.dropna(inplace = True)
+    
 
     ''' DON'T KNOW WHY IT DIDN'T WORK IT GAVE PUT ALL THE NUMBERS INTO ONE THING E.G ALL NEGATIVE
     for i in dataFromDatabase['smootedSentiment']:
@@ -27,7 +28,8 @@ def getSentiment(dataDent):
         elif i == 0: 
             dataFromDatabase['sentimentEvaluation'] = "neutral"
     '''
-    return dataFromDatabase['smootedSentiment']
+    dataDent = dataFromDatabase['smootedSentiment']
+    return dataDent 
 
 
 #getSentiment()
