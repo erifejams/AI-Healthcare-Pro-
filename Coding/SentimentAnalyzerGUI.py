@@ -40,7 +40,11 @@ class SentimentApplication:
         #gets the chatbot to talk
         sentimentResponse = f"{getSentiment(sentiment)}\n"
         ###message is inserted into the chat box
-        self.sentimentWindow.insert(END, sentimentResponse)
         self.sentimentWindow.configure(state = NORMAL)
-        return sentimentResponse
+        self.sentimentWindow.insert(END, sentimentResponse)
+        #disable it again
+        self.sentimentWindow.configure(state = DISABLED)
+        #Lets you see the last message that is in chat box
+        self.sentimentWindow.see(END)
+        
 

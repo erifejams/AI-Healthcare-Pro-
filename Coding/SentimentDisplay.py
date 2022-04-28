@@ -11,15 +11,21 @@ cursor = databaseUser.cursor()
 
 #read the sqlite database and display the data
 dataFromDatabase = pd.read_sql("SELECT * FROM User WHERE sentence LIKE '%%' ORDER BY sentiment DESC LIMIT 1000", databaseUser)
+dataFromDatabase['smootedSentiment'] = dataFromDatabase['sentiment'].rolling(int(len(dataFromDatabase)/2)).mean()
+dataFromDatabase.dropna(inplace = True)
+dataFromDatabase_Summary = dataFromDatabase.describe()
+#print(dataFromDatabase)
+#print(dataFromDatabase_Summary)
 
-def getSentiment(dataDent):
+def getSentiment():
     #smooted sentiments data
     #1000/2
     dataFromDatabase['smootedSentiment'] = dataFromDatabase['sentiment'].rolling(int(len(dataFromDatabase)/2)).mean()
     dataFromDatabase.dropna(inplace = True)
-    print(dataFromDatabase['smootedSentiment'])
-    
+    #print(dataFromDatabase['sentiment', 'smootedSentiment'])
 
+    
+    
     ''' DON'T KNOW WHY IT DIDN'T WORK IT GAVE PUT ALL THE NUMBERS INTO ONE THING E.G ALL NEGATIVE
     for i in dataFromDatabase['smootedSentiment']:
         if i > 0.1:
@@ -29,7 +35,8 @@ def getSentiment(dataDent):
         elif i == 0: 
             dataFromDatabase['sentimentEvaluation'] = "neutral"
     '''
-    dataDent = dataFromDatabase['smootedSentiment']
+    #dataDent = dataFromDatabase['smootedSentiment']
+    dataDent = dataFromDatabase['sentence', 'sentiment', 'smootedSentiment']
     return dataDent 
 
 
