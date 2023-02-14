@@ -1,8 +1,6 @@
 # AI-Healthcare-Pro-
-My final year project
-
-# Project Description
 An Artificial Intelligence chatbot system and a website, which aims at giving people a platform to talk about their mental health issues. 
+
 # Runnng Files
 The files need to be run in this order:<br/>
 1. Run Connect.py and wait while the graphical interface to appear
@@ -32,3 +30,5 @@ pip install sklearn<br/>
 pip install keras<br/>
 pip install nltk<br/>
  
+# Website Prototype
+![Website Second Iteration](https://user-images.githubusercontent.com/44726422/218863594-79c8d313-746d-4699-a1f9-3fea34d5eba9.jpg)
