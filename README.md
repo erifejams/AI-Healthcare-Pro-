@@ -1,9 +1,6 @@
 # AI-Healthcare-Pro-
 An Artificial Intelligence chatbot system and a website, which aims at giving people a platform to talk about their mental health issues. 
 
-# System Usecase diagram
-![usecase](https://user-images.githubusercontent.com/44726422/218867439-48f25628-1fd9-4733-9ee1-89b294614ce1.png)
-
 <br>
 
 # Website Prototype
